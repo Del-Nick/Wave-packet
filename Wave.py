@@ -69,7 +69,7 @@ async def science_groups(callback: types.CallbackQuery):
     if user.status is not None:
         await science_groups_callback(user, callback)
     else:
-        await registration_handler(user, callback.message)
+        await science_groups_callback(user, callback)
 
 
 @dp.callback_query(F.data.startswith("delete_"))
