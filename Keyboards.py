@@ -2,6 +2,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import InlineKeyboardButton
 from aiogram.filters.callback_data import CallbackData
 from Database import User
+from About_departments import scientific_groups
 
 
 def registration_keyboard(user: User):
@@ -55,56 +56,6 @@ def start_keyboard(user: User):
             return delete_keyboard(user)
 
 
-scientific_groups = [[{'group': 'Вычислительный эксперимент в оптике',
-                       'callback': 'science_group_computational_experiment_in_optic'},
-
-                      {'group': 'Квантовая оптика и нанофотоника',
-                       'callback': 'science_group_quantum_optics_and_nanophotonics'},
-
-                      {'group': 'Группа биомедицинской фотоники',
-                       'callback': 'science_group_biomedical_photonics'},
-
-                      {'group': 'Органическая электроника',
-                       'callback': 'science_group_organic_electronic'}],
-
-                     [{'group': 'Экспериментальная и теоретическая квантовая оптика',
-                       'callback': 'science_group_experimental_and_theoretical_quantum_optic'},
-
-                      {'group': 'Теоретические проблемы оптики',
-                       'callback': 'science_group_theoretical_problems_of_optic'},
-
-                      {'group': 'Нелинейная поляризационная оптика',
-                       'callback': 'science_group_nonlinear_polarization_optic'},
-
-                      {'group': 'Фотоника и нелинейная спектроскопия',
-                       'callback': 'science_group_photonic_and_nonlinear_spectroscopy'}],
-
-                     [{'group': 'Лазерная диагностика биомолекул'
-                                'и методов фотоники в исследовании объектов культурного наследия',
-                       'callback': 'science_group_laser_diagnostic_biomolecules'},
-
-                      {'group': 'Лазерные системы и нелинейная спектроскопия',
-                       'callback': 'science_group_laser_system_and_nonlinear_spectroscopy'},
-
-                      {'group': 'Терагерцовая оптоэлектроника и спектроскопия',
-                       'callback': 'science_group_THz_optoelectronics_and_spectroscopy'},
-
-                      {'group': 'Нелинейная оптика и сверхсильные световые поля',
-                       'callback': 'science_group_nonlinear_optics_and_super-strong_light_fields'}],
-
-                     [{'group': 'Лазерная оптоакустика',
-                       'callback': 'science_group_laser_optoacoustics'},
-
-                      {'group': 'Релятивистская лазерная плазма',
-                       'callback': 'science_group_relativistic_laser_plasma'},
-
-                      {'group': 'Стохастические нелинейные процессы',
-                       'callback': 'science_group_stochastic_nonlinear_processes'},
-
-                      {'group': 'Центр измерительных технологий и промышленной автоматизации',
-                       'callback': 'science_group_center_for_measuring_technologies'}]]
-
-
 def science_group_keyboard(user: User):
     if user.action[-1] in ['0', '1', '2', '3']:
         page = int(user.action[-1])
@@ -113,32 +64,32 @@ def science_group_keyboard(user: User):
 
     keyboard = InlineKeyboardBuilder()
 
-    for group in scientific_groups[page]:
+    for group in scientific_groups[4 * page:4 * page + 4]:
         keyboard.row(InlineKeyboardButton(
             text=group['group'],
             callback_data=f"{group['callback']}_start"))
 
     back_button = InlineKeyboardButton(
-        text="⬇️ Меню ⬇️",
-        callback_data='science_group_🔙  Назад  🔙')
+        text="Меню",
+        callback_data='science_group_back_to_start_menu')
 
     if page == 0:
         keyboard.row(back_button,
                      InlineKeyboardButton(
-                         text=f"Страница 2 ➡️",
+                         text=" ➡️",
                          callback_data='science_group_page+'))
     elif page == 3:
         keyboard.row(InlineKeyboardButton(
-            text=f"⬅️ Страница 3",
+            text="⬅️ ",
             callback_data='science_group_page-'),
             back_button)
     else:
         keyboard.row(InlineKeyboardButton(
-            text=f"⬅️ Страница {page}",
+            text="⬅️ ",
             callback_data='science_group_page-'),
             back_button,
             InlineKeyboardButton(
-                text=f"Страница {page + 2} ➡️",
+                text=" ➡️",
                 callback_data='science_group_page+')
         )
 
@@ -158,19 +109,96 @@ def areas_courseworks_contacts_keyboard(user: User):
     keyboard = InlineKeyboardBuilder()
 
     keyboard.row(InlineKeyboardButton(
-        text="Научные напрвления",
-        callback_data=user.action.replace('start', 'areas')),
-        InlineKeyboardButton(
-            text="Курсовые работы",
-            callback_data=user.action.replace('start', 'courseworks')))
+        text="Научные направления",
+        callback_data=user.action.replace('start', 'areas_0')))
     keyboard.row(InlineKeyboardButton(
-        text="Контакты",
-        callback_data=user.action.replace('start', 'contacts')))
+        text="Курсовые работы",
+        callback_data=user.action.replace('start', 'courseworks_0')),
+        InlineKeyboardButton(
+            text="Контакты",
+            callback_data=user.action.replace('start', 'contacts')))
 
     keyboard.row(InlineKeyboardButton(
         text="⬅️ Назад",
-        callback_data=f"{'_'.join(user.action.split('_')[:-2])}_start"))
+        callback_data="science_group_start"))
 
+    if user.admin:
+        keyboard.row(InlineKeyboardButton(
+            text="Удалить запись обо мне",
+            callback_data='delete_user'))
+
+    return keyboard
+
+
+def slider_keyboard(user: User,
+                    total_pages: int,
+                    page: int,
+                    type_keyboard: str = 'areas'):
+    '''
+    Клавиатура для листания научных направлений кафедры
+    :param type_keyboard: Меню, которое будет листаться
+    :param total_pages: Количество научных направлений кафедры
+    :param page: Страница в научных направлениях кафедры
+    :param user: класс пользователя из базы данных
+    :return: объект клавиатуры
+    '''
+
+    # if 'courseworks' in user.action:
+    #     type_keyboard = 'courseworks'
+
+    keyboard = InlineKeyboardBuilder()
+
+    back_button = InlineKeyboardButton(
+        text="Назад",
+        callback_data=f'{"_".join(user.action.split("_")[:-2])}_start')
+
+    main_part_callback = user.action.split("_")
+    main_part_callback = "_".join(main_part_callback[:-2])
+
+    if page == 0:
+        keyboard.row(back_button,
+                     InlineKeyboardButton(
+                         text="➡",
+                         callback_data=f'{main_part_callback}_{type_keyboard}_+'))
+
+    elif page == total_pages - 1:
+        keyboard.row(
+            InlineKeyboardButton(
+                text="⬅",
+                callback_data=f'{main_part_callback}_{type_keyboard}_-'),
+            back_button)
+
+    else:
+        keyboard.row(
+            InlineKeyboardButton(
+                text="⬅",
+                callback_data=f'{main_part_callback}_{type_keyboard}_-'),
+            back_button,
+            InlineKeyboardButton(
+                text="➡",
+                callback_data=f'{main_part_callback}_{type_keyboard}_+'))
+
+    if user.admin:
+        keyboard.row(InlineKeyboardButton(
+            text="Удалить запись обо мне",
+            callback_data='delete_user'))
+
+    return keyboard
+
+
+def back_keyboard(user: User):
+    """
+    Клавиатура только с кнопкой назад. Меняет последнее слово в user.action на start
+    :return: Объект клавиатуры
+    """
+    keyboard = InlineKeyboardBuilder()
+
+    _ = user.action.split('_')
+    _[-1] = 'start'
+
+    keyboard.row(InlineKeyboardButton(
+        text="⬅ Назад",
+        callback_data='_'.join(_)))
     if user.admin:
         keyboard.row(InlineKeyboardButton(
             text="Удалить запись обо мне",

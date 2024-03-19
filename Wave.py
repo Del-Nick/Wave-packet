@@ -27,15 +27,16 @@ async def cmd_start(message: types.Message):
     user = User(message.chat.id, message.chat.username)
 
     if user.status is None or user.new_user:
-        await registration_handler(user, message)
+        await registration_handler(user, message, bot)
 
     elif user.status == 'employee' and user.nickname is None:
-        await registration_handler(user, message)
+        await registration_handler(user, message, bot)
 
     elif user.status is not None and None in (user.nickname, user.usergroup):
-        await registration_handler(user, message)
+        await registration_handler(user, message, bot)
+
     else:
-        await start_handler(user, message)
+        await start_handler(user, message, bot)
 
 
 @dp.message()
@@ -46,10 +47,10 @@ async def handler(message: types.Message):
         user = User(message.chat.id, message.chat.username)
         match user.action.split('_')[0]:
             case 'registration':
-                await registration_handler(user, message)
+                await registration_handler(user, message, bot)
 
             case 'start':
-                await start_handler(user, message)
+                await start_handler(user, message, bot)
 
             case _:
                 await message.answer(text='Пока я не понимаю, но я активно учусь',

@@ -1,10 +1,11 @@
 from aiogram.types import Message
-
+from Pictures import main_menu
 from Keyboards import *
 from Database import User
+from aiogram import Bot
 
 
-async def registration_handler(user: User, message: Message):
+async def registration_handler(user: User, message: Message, bot: Bot):
     if user.new_user:
         await message.answer("Привет! Я бот кафедры волновых процессов. Чтобы мы оба меньше волновались, давай чуток "
                              "познакомимся. Выбери, в каком статусе ты находишься",
@@ -23,8 +24,10 @@ async def registration_handler(user: User, message: Message):
 
                     case 'employee':
                         user.action = 'start'
-                        await message.answer(f'Супер, {user.nickname}. Пока я не знаю, что показать сотрудникам',
-                                             reply_markup=start_keyboard(user).as_markup())
+                        await message.reply_photo(photo=main_menu,
+                                                  caption=f'Супер, {user.nickname}. Пока я не знаю, что показать '
+                                                          f'сотрудникам',
+                                                  reply_markup=start_keyboard(user).as_markup())
 
             case 'usergroup':
                 # Проверяем, что группа из трёх цифр
@@ -35,11 +38,17 @@ async def registration_handler(user: User, message: Message):
 
                         match user.status:
                             case 'student':
-                                await message.answer(f'Супер, {user.nickname}. Я запомнил, что ты из группы {user.usergroup}. '
-                                                     f'Пока я не знаю, что показать студентам кафедры',
+                                await bot.send_photo(chat_id=message.chat.id,
+                                                     photo=main_menu,
+                                                     caption=f'Супер, {user.nickname}. Я запомнил, что ты из '
+                                                             f'группы {user.usergroup}. Пока я не знаю, что показать '
+                                                             f'студентам кафедры',
                                                      reply_markup=start_keyboard(user).as_markup())
                             case 'small_student':
-                                await message.answer(f'Супер, {user.nickname}. Я запомнил, что ты из группы {user.usergroup}',
+                                await bot.send_photo(chat_id=message.chat.id,
+                                                     photo=main_menu,
+                                                     caption=f'Супер, {user.nickname}. Я запомнил, что ты из '
+                                                             f'группы {user.usergroup}',
                                                      reply_markup=start_keyboard(user).as_markup())
                     else:
                         raise ValueError
@@ -59,10 +68,12 @@ async def registration_handler(user: User, message: Message):
     user.update()
 
 
-async def start_handler(user: User, message: Message):
+async def start_handler(user: User, message: Message, bot: Bot):
     match user.status:
         case 'small_student':
-            await message.answer(f'Вжух! Мы в главном меню',
+            await bot.send_photo(chat_id=message.chat.id,
+                                 photo=main_menu,
+                                 caption=f'Вжух! Мы в главном меню',
                                  reply_markup=start_keyboard(user).as_markup())
         case _:
             await message.answer(text='Пока я не понимаю, но я активно учусь',
