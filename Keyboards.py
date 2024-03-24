@@ -76,20 +76,20 @@ def science_group_keyboard(user: User):
     if page == 0:
         keyboard.row(back_button,
                      InlineKeyboardButton(
-                         text=" ➡️",
+                         text="▶",
                          callback_data='science_group_page+'))
     elif page == 3:
         keyboard.row(InlineKeyboardButton(
-            text="⬅️ ",
+            text="◀",
             callback_data='science_group_page-'),
             back_button)
     else:
         keyboard.row(InlineKeyboardButton(
-            text="⬅️ ",
+            text="◀",
             callback_data='science_group_page-'),
             back_button,
             InlineKeyboardButton(
-                text=" ➡️",
+                text="▶",
                 callback_data='science_group_page+')
         )
 
@@ -105,21 +105,47 @@ def science_group_keyboard(user: User):
     return keyboard
 
 
-def areas_courseworks_contacts_keyboard(user: User):
+def areas_courseworks_contacts_keyboard(user: User, num: int):
     keyboard = InlineKeyboardBuilder()
 
-    keyboard.row(InlineKeyboardButton(
-        text="Научные направления",
-        callback_data=user.action.replace('start', 'areas_0')))
-    keyboard.row(InlineKeyboardButton(
-        text="Курсовые работы",
-        callback_data=user.action.replace('start', 'courseworks_0')),
-        InlineKeyboardButton(
-            text="Контакты",
-            callback_data=user.action.replace('start', 'contacts')))
+    buttons = scientific_groups[num]['buttons'].keys()
+
+    areas, courseworks, contacts = False, False, False
+
+    for button in buttons:
+        match button:
+            case 'areas':
+                areas = True
+            case 'courseworks':
+                courseworks = True
+            case 'contacts':
+                contacts = True
+
+    if areas:
+            keyboard.row(InlineKeyboardButton(
+                text="Научные направления",
+                callback_data=user.action.replace('start', 'areas_0')))
+
+    if courseworks and contacts:
+        keyboard.row(InlineKeyboardButton(
+                        text="Курсовые работы",
+                        callback_data=user.action.replace('start', 'courseworks_0')),
+                     InlineKeyboardButton(
+                         text="Контакты",
+                         callback_data=user.action.replace('start', 'contacts')))
+    else:
+        if courseworks:
+            keyboard.row(InlineKeyboardButton(
+                text="Курсовые работы",
+                callback_data=user.action.replace('start', 'courseworks_0')))
+
+        if contacts:
+            keyboard.row(InlineKeyboardButton(
+                    text="Контакты",
+                    callback_data=user.action.replace('start', 'contacts')))
 
     keyboard.row(InlineKeyboardButton(
-        text="⬅️ Назад",
+        text="Назад",
         callback_data="science_group_start"))
 
     if user.admin:
@@ -158,24 +184,24 @@ def slider_keyboard(user: User,
     if page == 0:
         keyboard.row(back_button,
                      InlineKeyboardButton(
-                         text="➡",
+                         text="▶",
                          callback_data=f'{main_part_callback}_{type_keyboard}_+'))
 
     elif page == total_pages - 1:
         keyboard.row(
             InlineKeyboardButton(
-                text="⬅",
+                text="◀",
                 callback_data=f'{main_part_callback}_{type_keyboard}_-'),
             back_button)
 
     else:
         keyboard.row(
             InlineKeyboardButton(
-                text="⬅",
+                text="◀",
                 callback_data=f'{main_part_callback}_{type_keyboard}_-'),
             back_button,
             InlineKeyboardButton(
-                text="➡",
+                text="▶",
                 callback_data=f'{main_part_callback}_{type_keyboard}_+'))
 
     if user.admin:
@@ -197,7 +223,7 @@ def back_keyboard(user: User):
     _[-1] = 'start'
 
     keyboard.row(InlineKeyboardButton(
-        text="⬅ Назад",
+        text="Назад",
         callback_data='_'.join(_)))
     if user.admin:
         keyboard.row(InlineKeyboardButton(
