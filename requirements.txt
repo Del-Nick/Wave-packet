@@ -1,4 +1,5 @@
 aiogram==3.4.1
+numpy==1.26.4
 paramiko==3.4.0
-pymysql==1.1.0
+PyMySQL==1.1.0
 sshtunnel==0.4.0
