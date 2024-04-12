@@ -26,16 +26,23 @@ dp = Dispatcher()
 
 def logger(user: User, message: types.Message = None, callback: types.CallbackQuery = None):
     if message is not None:
-        print(f'{datetime.now()}    Nickname:   {message.chat.username}     Action: {user.action}    {message.text}')
+        _ = f'{datetime.now()}  |  Nickname: {message.chat.username}  |  Action: {user.action}  |  '
+        if message.photo is not None:
+            _ += f'Photo: {message.photo[-1].file_id}'
+        if message.text is not None:
+            _ += f'Message: {message.text}'
+    else:
+        _ = f'{datetime.now()}  |  Nickname: {callback.message.chat.username}  |  Action: {user.action}  |  ' \
+            f'Callback: {callback.data}'
 
-    elif callback is not None:
-        print(f'{datetime.now()}    Nickname:   {callback.message.chat.username}     Action: {user.action}   {callback.data}')
+    with open('message & actions history.txt', mode='a+', encoding='utf-8') as f:
+        f.write(f'{_}\n')
+    print(_)
 
 
 # Хэндлер на команду /start
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
-    print(message.chat.id, message.chat.username)
     user = User(message.chat.id, message.chat.username)
     logger(message=message, user=user)
 
@@ -66,11 +73,6 @@ async def callback_handler(callback: types.CallbackQuery):
         user = User(callback.message.chat.id, callback.message.chat.username)
         logger(callback=callback, user=user)
 
-        # keyboard_to_delete = types.ReplyKeyboardRemove()
-        # await bot.send_message(chat_id=user.id,
-        #                        text='Удаляем клавиатуру',
-        #                        reply_markup=keyboard_to_delete)
-
         if callback.data.startswith('registration'):
             await registration_callback(user, callback)
 
@@ -78,14 +80,17 @@ async def callback_handler(callback: types.CallbackQuery):
             await start_callback(user, callback)
 
         elif callback.data.startswith('about'):
-                await callback.message.edit_media(InputMediaPhoto(media=error_pictures,
-                                                                  caption='Упс, кажется, тут пусто'),
-                                                  reply_markup=back_keyboard(user).as_markup())
+            await callback.message.edit_media(InputMediaPhoto(media=error_pictures,
+                                                              caption='Упс, кажется, тут пусто'),
+                                              reply_markup=back_keyboard(user).as_markup())
 
         elif callback.data.startswith('science_group'):
             await science_groups_callback(user, callback)
 
         elif callback.data.startswith('admin'):
+            await admin_panel(user=user, bot=bot, callback=callback)
+
+        elif user.action.startswith('admin'):
             await admin_panel(user=user, bot=bot, callback=callback)
 
 

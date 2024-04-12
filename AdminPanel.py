@@ -51,7 +51,8 @@ async def admin_panel(user: User, bot: Bot, callback: CallbackQuery = None, mess
                                      reply_markup=admin_keyboard(user).as_markup())
             user.action = 'admin->start'
         else:
-            user.action = callback.data
+            if 'admin' in callback.data or 'start' in callback.data:
+                user.action = callback.data
 
             if user.action == 'start':
                 await start_callback(user, callback)
@@ -88,21 +89,21 @@ async def admin_panel(user: User, bot: Bot, callback: CallbackQuery = None, mess
                                                   reply_markup=back_keyboard(user).as_markup())
 
     else:
-        if 'Назад' in message.text:
-            await bot.delete_message(chat_id=user.id, message_id=message.message_id)
-            if user.nickname == 'Nikatkavr':
-                await bot.send_photo(chat_id=user.id,
-                                     photo=admin,
-                                     caption='Возвращаю тебя в главное меню, моя госпожа',
-                                     reply_markup=admin_keyboard(user).as_markup())
-            else:
-                await bot.send_photo(chat_id=user.id,
-                                     photo=admin,
-                                     caption='Возвращаю тебя в главное меню, мой господин',
-                                     reply_markup=admin_keyboard(user).as_markup())
-            user.action = 'admin->start'
+        # if 'Назад' in message.text:
+        #     await bot.delete_message(chat_id=user.id, message_id=message.message_id)
+        #     if user.nickname == 'Nikatkavr':
+        #         await bot.send_photo(chat_id=user.id,
+        #                              photo=admin,
+        #                              caption='Возвращаю тебя в главное меню, моя госпожа',
+        #                              reply_markup=admin_keyboard(user).as_markup())
+        #     else:
+        #         await bot.send_photo(chat_id=user.id,
+        #                              photo=admin,
+        #                              caption='Возвращаю тебя в главное меню, мой господин',
+        #                              reply_markup=admin_keyboard(user).as_markup())
+        #     user.action = 'admin->start'
 
-        elif 'add_science_group' in user.action:
+        if 'add_science_group' in user.action:
             await add_science_group(user, message=message, bot=bot)
 
         elif 'edit_science_group' in user.action:
@@ -137,7 +138,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                 user.action = f'admin->add_science_group->add_short_name_id={lab.id}'
 
             else:
-                await database_errer_message(user, bot)
+                await database_error_message(user, bot)
 
         elif message.text in [x[1] for x in labs.labs]:
             await bot.send_message(chat_id=user.id,
@@ -150,14 +151,14 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                 await bot.send_message(chat_id=user.id,
                                        text=f'Редактируем научную группу: {message.text}.\n\n'
                                             f'Введи короткое название научной группы, которое будет отображаться на '
-                                            f'кнопках. Помни, что оно не должно превышать 64 символа, однако лучше сделать '
-                                            f'его короче',
+                                            f'кнопках. Помни, что оно не должно превышать 64 символа, однако лучше '
+                                            f'сделать его короче',
                                        reply_markup=back_keyboard_without_callback(user).as_markup())
 
                 user.action = f'admin->add_science_group->add_short_name_id={lab.id}'
 
             else:
-                await database_errer_message(user, bot)
+                await database_error_message(user, bot)
 
     elif 'add_short_name' in user.action:
         # Названия в callback не запихать, слишком длинные. Ищем лабу по id
@@ -177,7 +178,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
             lab.short_name = message.text
             if lab.update_lab():
                 await bot.send_message(chat_id=user.id,
-                                       text=f'Супер! Напиши callback-название, которое будет использоваться для'
+                                       text=f'Супер! Напиши callback-название, которое будет использоваться для '
                                             f'внутренней работы бота на английском языке по следующему образцу:\n\n'
                                             f'this_is_just_an_example\n\n'
                                             f'Название не должно превышать 40 символов и должно быть напрямую связано с '
@@ -186,7 +187,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
 
                 user.action = f'admin->add_science_group->add_callback_name_id={lab.id}'
             else:
-                await database_errer_message(user, bot)
+                await database_error_message(user, bot)
 
     elif 'add_callback_name' in user.action:
         lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
@@ -213,7 +214,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
 
                 user.action = f'admin->add_science_group->add_main_picture_id={lab.id}'
             else:
-                await database_errer_message(user, bot)
+                await database_error_message(user, bot)
 
     elif 'add_main_picture' in user.action:
         lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
@@ -234,7 +235,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                 user.action = f'admin->add_science_group->add_about_id={lab.id}'
 
             else:
-                await database_errer_message(user, bot)
+                await database_error_message(user, bot)
 
     elif 'add_about' in user.action:
         lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
@@ -243,148 +244,306 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
 
         if lab.update_lab():
             await bot.send_message(chat_id=user.id,
-                                   text='Описание добавил. Перейдём к научным направлениям. Отправляй мне информацию по '
-                                        'следующему образцу:\n\n'
+                                   text='Описание добавил\. Перейдём к научным направлениям\. Отправляй мне информацию '
+                                        'по следующему образцу:\n\n'
                                         ''
-                                        '*Название:* \n\n'
+                                        '*Название:* \n\n\n'
                                         ''
-                                        '*Описание:* \n\n'
+                                        '*Описание:* \n\n\n'
                                         ''
-                                        '*Контакты:* (потенциального научного руководителя)\n\n'
-                                        '*Подробнее:* ссылка на более подробное описание (по желанию)\n\n'
+                                        '*Контакты:* \(потенциального научного руководителя\)\n\n\n'
+                                        '*Подробнее:* только одна ссылка на более подробное описание без '
+                                        'дополнительного текста \(по желанию\)\n\n'
                                         ''
-                                        'Важно! Не забудь прикрепить картинку к сообщению, оставить слова\n'
+                                        'Важно\! Не забудь прикрепить картинку к сообщению, оставить слова\n'
                                         '"*Название:* "\n'
                                         '"*Описание:* "\n'
                                         '"*Контакты:* "\n'
                                         '"*Подробнее:* "\n\n'
-                                        'По ним я пойму, если чего-то не хватает. Между пунктами оставляй пустую '
-                                        'строку. '
+                                        'По ним я пойму, если чего\-то не хватает\. Между пунктами оставляй *__две '
+                                        'пустые строки__*, а между своими абзацами *__одну__*\.'
                                         '\n\n'
                                         'Если считаешь, что все направления указаны, то жми на кнопку "Далее"',
                                    reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
-                                   parse_mode="Markdown")
+                                   parse_mode="MarkdownV2")
 
             user.action = f'admin->add_science_group->add_areas_id={lab.id}'
 
         else:
-            await database_errer_message(user, bot)
+            await database_error_message(user, bot)
 
     elif 'add_areas' in user.action:
         lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
-        if message.text == 'Далее':
-            await bot.send_message(chat_id=user.id,
-                                   text=f'Напиши мне контакты, по которым можно связаться с научной группы',
-                                   reply_markup=back_keyboard_without_callback(user).as_markup())
+        if callback:
+            if callback.data == 'Далее':
+                await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
+                await bot.send_message(chat_id=user.id,
+                                       text=f'Напиши мне контакты, по которым можно связаться с научной группой в '
+                                            f'следующем формате:\n\n'
+                                            f''
+                                            f'*Должность ФИО*\n'
+                                            f'*Кабинет*\n'
+                                            f'*Электронная почта*\n\n'
+                                            f''
+                                            f'На этот раз можно не вставлять кодовых слов, а просто писать текстом по '
+                                            f'образцу\. Если хочешь добавить несколько контактов, оставляй между '
+                                            f'людьми *__одну__* пустую строку',
+                                       reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
+                                       parse_mode='MarkdownV2')
 
             user.action = f'admin->add_science_group->add_contacts_id={lab.id}'
 
-        elif message.document is not None:
-            await bot.send_message(chat_id=user.id,
-                                   text='Прикрепляй изображение как картинку (со сжатием), а не как документ',
-                                   reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup())
+        else:
+            if 'Название:' not in message.text:
+                await bot.send_message(chat_id=user.id,
+                                       text='Не могу понять, где название. Не забывай оставлять кодовое слово перед '
+                                            'названием:\n\n'
+                                            '*Название:*',
+                                       reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
+                                       parse_mode='Markdown')
 
-        elif message.photo is None:
-            await bot.send_message(chat_id=user.id,
-                                   text='Не вижу картинки. Ты не забыл её прикрепить?',
-                                   reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup())
+            elif 'Описание:' not in message.text:
+                await bot.send_message(chat_id=user.id,
+                                       text='Не могу понять, где описание. Не забывай оставлять кодовое слово перед '
+                                            'описанием:\n\n'
+                                            '*Описание:*',
+                                       reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
+                                       parse_mode='Markdown')
 
-        elif message.caption is None:
-            await bot.send_message(chat_id=user.id,
-                                   text='Прикрепи текст прямо к описанию картинки',
-                                   reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup())
+            elif 'Контакты:' not in message.text:
+                await bot.send_message(chat_id=user.id,
+                                       text='Не могу понять, где контакты. Не забывай оставлять кодовое слово перед '
+                                            'контактами:\n\n'
+                                            '*Контакты:*',
+                                       reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
+                                       parse_mode='Markdown')
 
-        elif 'Название:' not in message.caption:
-            await bot.send_message(chat_id=user.id,
-                                   text='Не могу понять, где название. Не забывай оставлять кодовое слово перед '
-                                        'названием:\n\n'
-                                        '*Название:*',
-                                   reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
-                                   parse_mode='Markdown')
+            elif '\n\n\n' not in message.text or len(message.text.split('\n\n\n')) < 3:
+                await bot.send_message(chat_id=user.id,
+                                       text='Для меня очень важно, чтобы между пунктами было *__2 пустые__* строки\. '
+                                            'Исправь, пожалуйста',
+                                       reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
+                                       parse_mode='MarkdownV2')
 
-        elif 'Описание:' not in message.caption:
-            await bot.send_message(chat_id=user.id,
-                                   text='Не могу понять, где описание. Не забывай оставлять кодовое слово перед '
-                                        'описанием:\n\n'
-                                        '*Описание:*',
-                                   reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
-                                   parse_mode='Markdown')
+            else:
+                _ = message.text.split('\n\n\n')
+                data_to_paste = {'title': _[0].replace('Название:', ''),
+                                 'about': _[1].replace('Описание:', ''),
+                                 'contacts': _[2].replace('Контакты:', '')}
+                if len(_) == 4:
+                    data_to_paste['more'] = _[3].replace('Подробнее:', '')
 
-        elif 'Контакты:' not in message.caption:
-            await bot.send_message(chat_id=user.id,
-                                   text='Не могу понять, где контакты. Не забывай оставлять кодовое слово перед '
-                                        'контактами:\n\n'
-                                        '*Контакты:*',
-                                   reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
-                                   parse_mode='Markdown')
+                if type(lab.areas) is list:
+                    lab.areas.append(data_to_paste)
+                else:
+                    lab.areas = [data_to_paste]
+
+                if lab.update_lab():
+                    await bot.send_message(chat_id=user.id,
+                                           text=f'Записал. Теперь прикрепи фотографии *__по одной__*, сопровождая их '
+                                                f'описанием',
+                                           reply_markup=back_keyboard_without_callback(user,
+                                                                                       button='Следующее '
+                                                                                              'направление').as_markup(),
+                                           parse_mode='MarkdownV2')
+                    user.action = f'admin->add_science_group->add_picture_to_area_id={lab.id}'
+                else:
+                    await database_error_message(user, bot)
+
+    elif 'add_picture_to_area' in user.action:
+        lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+
+        if callback:
+            if 'Следующее направление' in callback.data:
+                await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
+                await bot.send_message(chat_id=user.id,
+                                       text='Картинку добавил\. Можешь отправить следующее научное направление по '
+                                            'тому же образцу:\n\n'
+                                            ''
+                                            '*Название:* \n\n\n'
+                                            ''
+                                            '*Описание:* \n\n\n'
+                                            ''
+                                            '*Контакты:* \(потенциального научного руководителя\)\n\n\n'
+                                            '*Подробнее:* *__только одна__* ссылка на более подробное описание без '
+                                            'дополнительного текста \(по желанию\)\n\n\n'
+                                            ''
+                                            'Важно\! Не забудь прикрепить картинку к сообщению, оставить слова\n'
+                                            '"*Название:* "\n'
+                                            '"*Описание:* "\n'
+                                            '"*Контакты:* "\n'
+                                            '"*Подробнее:* "\n\n'
+                                            'По ним я пойму, если чего\-то не хватает\. Между пунктами оставляй *__две '
+                                            'пустые строки__*, а между своими абзацами *__одну__*'
+                                            '\n\n'
+                                            'Если считаешь, что все направления указаны, то жми на кнопку "Далее"',
+                                       reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup(),
+                                       parse_mode="MarkdownV2")
+
+                user.action = f'admin->add_science_group->add_areas_id={lab.id}'
 
         else:
-            _ = message.caption.split('\n\n')
-            data_to_paste = {'title': _[0].replace('Название:', ''),
-                             'about': _[1].replace('Описание:', ''),
-                             'contacts': _[2].replace('Контакты:', ''),
-                             'picture': message.photo[-1].file_id}
-            if len(_) == 4:
-                data_to_paste['more'] = _[3].replace('Подробнее:', '')
-
-            if type(lab.areas) is list:
-                lab.areas.append(data_to_paste)
-            else:
-                lab.areas = [data_to_paste]
-
-            if lab.update_lab():
+            if message.document is not None:
                 await bot.send_message(chat_id=user.id,
-                                       text=f'Записал. Можешь отправить следующее направление или нажать "Далее", '
-                                            f'если считаешь, что всё уже добавлено',
-                                       reply_markup=back_keyboard_without_callback(user, button='Далее').as_markup())
+                                       text='Прикрепляй изображение *__как картинку__* (со сжатием), а не как документ',
+                                       reply_markup=back_keyboard_without_callback(user).as_markup(),
+                                       parse_mode="MarkdownV2")
+
+            elif message.photo is None:
+                await bot.send_message(chat_id=user.id,
+                                       text='Не вижу картинки. Ты не забыл её прикрепить?',
+                                       reply_markup=back_keyboard_without_callback(user).as_markup())
+
+            elif message.caption is None:
+                await bot.send_message(chat_id=user.id,
+                                       text='Прикрепи описание, чтобы было понятно, что изображено на картинке',
+                                       reply_markup=back_keyboard_without_callback(user).as_markup())
+
             else:
-                await database_errer_message(user, bot)
+                if 'pictures' in lab.areas[-1].keys():
+                    lab.areas[-1]['pictures'].append({'picture': message.photo[-1].file_id,
+                                                      'desc': message.caption})
+                else:
+                    lab.areas[-1]['pictures'] = [{'picture': message.photo[-1].file_id,
+                                                  'desc': message.caption}]
+                if lab.update_lab():
+                    await bot.send_message(chat_id=user.id,
+                                           text='Записал. Можешь отправить ещё картинки или перейти к следующему '
+                                                'направлению',
+                                           reply_markup=back_keyboard_without_callback(user,
+                                                                                       button='Следующее направление').as_markup())
+                else:
+                    await database_error_message(user, bot)
 
     elif 'add_contacts' in user.action:
         lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
-        lab.contacts = message.text
+        # Своего рода костыль. Чтобы не переходить к следующему этапу, если пользователь прислал неправильно оформленный
+        # текст
+        success = False
 
-        if lab.update_lab():
-            await bot.send_message(chat_id=user.id,
-                                   text='И последний этап. Добавь темы курсовых работ, которыми могут заниматься студенты. '
-                                        'Если будешь добавлять по одной работе, то отправляй сообщений по следующему '
-                                        'образцу:\n\n'
-                                        ''
-                                        'Название\n'
-                                        'Научный руководитель\n'
-                                        'Контакт научного руководителя\n\n'
-                                        ''
-                                        'Я могу обрабатывать и по несколько курсовых за раз. Отправляй сообщения по тому '
-                                        'же образцу, но оставляй пустую строку между информацией:\n\n'
-                                        ''
-                                        'Название\n'
-                                        'Научный руководитель\n'
-                                        'Контакт научного руководителя\n\n'
-                                        ''
-                                        'Название\n'
-                                        'Научный руководитель\n'
-                                        'Контакт научного руководителя\n\n',
-                                   reply_markup=back_keyboard_without_callback(user, button='Завершить').as_markup())
+        if callback:
+            if 'Далее' in callback.data:
+                await bot.send_message(chat_id=user.id,
+                                       text='И последний этап\. Добавь темы курсовых работ, которыми могут заниматься '
+                                            'студенты\. Если будешь добавлять по одной работе, то отправляй сообщения '
+                                            'по следующему образцу:\n\n'
+                                            ''
+                                            '*Название*\n'
+                                            '*Научный руководитель*\n'
+                                            '*Контакт научного руководителя*\n\n'
+                                            ''
+                                            'Я могу обрабатывать и по несколько курсовых за раз\. Отправляй сообщения '
+                                            'по тому же образцу, но оставляй пустую строку между информацией:\n\n'
+                                            ''
+                                            '*Название*\n'
+                                            '*Научный руководитель*\n'
+                                            '*Контакт научного руководителя*\n\n'
+                                            ''
+                                            '*Название*\n'
+                                            '*Научный руководитель*\n'
+                                            '*Контакт научного руководителя*\n\n'
+                                            ''
+                                            'Кодовые слова в этот раз тоже не обязательны',
+                                       reply_markup=back_keyboard_without_callback(user,
+                                                                                   button='Завершить').as_markup())
 
-            user.action = f'admin->add_science_group->add_courseworks_id={lab.id}'
+                user.action = f'admin->add_science_group->add_courseworks_id={lab.id}'
+
         else:
-            await database_errer_message(user, bot)
+            if '\n\n' in message.text:
+                for human in message.text.split('\n\n'):
+                    if len(human.split('\n')) != 3:
+                        await bot.send_message(chat_id=user.id,
+                                               text=f'Возникла проблема с этим человеком:\n {human}\. Проверь, все ли '
+                                                    f'правила соблюдены\n\n'
+                                                    ''
+                                                    '*Название*\n'
+                                                    '*Научный руководитель*\n'
+                                                    '*Контакт научного руководителя*\n\n',
+                                               reply_markup=back_keyboard_without_callback(user).as_markup(),
+                                               parse_mode='MarkdownV2')
+                        break
+                    else:
+                        _ = human.split('\n')
+                        data_to_paste = {'title': _[0],
+                                         'teacher': _[1],
+                                         'contact': _[2]}
+                        if lab.contacts is None:
+                            lab.contacts = [data_to_paste]
+                        else:
+                            lab.contacts.append(data_to_paste)
+
+                        success = True
+            else:
+                if len(message.text.split('\n')) != 3:
+                    await bot.send_message(chat_id=user.id,
+                                           text=r'Возникла проблема с текстом\. Проверь, все ли '
+                                                'правила соблюдены\n\n'
+                                                ''
+                                                '*Название*\n'
+                                                '*Научный руководитель*\n'
+                                                '*Контакт научного руководителя*\n\n',
+                                           reply_markup=back_keyboard_without_callback(user).as_markup(),
+                                           parse_mode='MarkdownV2')
+                else:
+                    _ = message.text.split('\n')
+                    data_to_paste = {'title': _[0],
+                                     'teacher': _[1],
+                                     'contact': _[2]}
+                    if lab.contacts is None:
+                        lab.contacts = [data_to_paste]
+                    else:
+                        lab.contacts.append(data_to_paste)
+
+                    success = True
+
+            if success:
+                if lab.update_lab():
+                    await bot.send_message(chat_id=user.id,
+                                           text='И последний этап. Добавь темы курсовых работ, которыми могут заниматься '
+                                                'студенты. Если будешь добавлять по одной работе, то отправляй сообщений '
+                                                'по следующему образцу:\n\n'
+                                                ''
+                                                '*Название*\n'
+                                                '*Научный руководитель*\n'
+                                                '*Контакт научного руководителя*\n\n'
+                                                ''
+                                                'Я могу обрабатывать и по несколько курсовых за раз. Отправляй сообщения '
+                                                'по тому же образцу, но оставляй пустую строку между информацией:\n\n'
+                                                ''
+                                                '*Название*\n'
+                                                '*Научный руководитель*\n'
+                                                '*Контакт научного руководителя*\n\n'
+                                                ''
+                                                '*Название*\n'
+                                                '*Научный руководитель*\n'
+                                                '*Контакт научного руководителя*\n\n'
+                                                ''
+                                                'Оставлять кодовые слова необязательно',
+                                           reply_markup=back_keyboard_without_callback(user,
+                                                                                       button='Завершить').as_markup(),
+                                           parse_mode='Markdown')
+
+                    user.action = f'admin->add_science_group->add_courseworks_id={lab.id}'
+                else:
+                    await database_error_message(user, bot)
 
     elif 'add_courseworks' in user.action:
-        if message.text == 'Завершить':
-            if user.nickname == 'Nikatkavr':
-                await bot.send_photo(chat_id=message.chat.id,
-                                     photo=admin,
-                                     caption='Редактирование научного направления завершено, моя госпожа',
-                                     reply_markup=admin_keyboard(user).as_markup())
-            else:
-                await bot.send_photo(chat_id=message.chat.id,
-                                     photo=admin,
-                                     caption='Редактирование научного направления завершено, мой господин',
-                                     reply_markup=admin_keyboard(user).as_markup())
+        if callback:
+            if 'Завершить' in callback.data:
+                if user.nickname == 'Nikatkavr':
+                    await bot.send_photo(chat_id=message.chat.id,
+                                         photo=admin,
+                                         caption='Редактирование научного направления завершено, моя госпожа',
+                                         reply_markup=admin_keyboard(user).as_markup())
+                else:
+                    await bot.send_photo(chat_id=user.id,
+                                         photo=admin,
+                                         caption='Редактирование научного направления завершено, мой господин',
+                                         reply_markup=admin_keyboard(user).as_markup())
 
-            user.action = 'admin->start'
+                user.action = 'admin->start'
 
         else:
             lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
@@ -402,7 +561,8 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                                                     f'*Название*\n'
                                                     f'*Научный руководитель*\n'
                                                     f'*Контакты*',
-                                               reply_markup=back_keyboard_without_callback(user, button='Завершить').as_markup(),
+                                               reply_markup=back_keyboard_without_callback(user,
+                                                                                           button='Завершить').as_markup(),
                                                parse_mode='Markdown')
                         break
 
@@ -422,7 +582,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                                                    reply_markup=back_keyboard_without_callback(user,
                                                                                                button='Завершить').as_markup())
                         else:
-                            await database_errer_message(user, bot)
+                            await database_error_message(user, bot)
 
             else:
                 _ = message.text.split('\n')
@@ -436,7 +596,8 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                                                 f'*Название*\n'
                                                 f'*Научный руководитель*\n'
                                                 f'*Контакты*',
-                                           reply_markup=back_keyboard_without_callback(user, button='Завершить').as_markup(),
+                                           reply_markup=back_keyboard_without_callback(user,
+                                                                                       button='Завершить').as_markup(),
                                            parse_mode='Markdown')
                 else:
                     _ = {'title': _[0],
@@ -451,13 +612,16 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                                                     f'*Название:*    {_["title"]}\n\n'
                                                     f'*Научный руководитель:*    {_["teacher"]}\n\n'
                                                     f'*Контакты:*   {_["contact"]}',
-                                               reply_markup=back_keyboard_without_callback(user, button='Завершить').as_markup(),
+                                               reply_markup=back_keyboard_without_callback(user,
+                                                                                           button='Завершить').as_markup(),
                                                parse_mode='Markdown')
                     else:
-                        await database_errer_message(user, bot)
+                        await database_error_message(user, bot)
 
     user.update()
 
+
+# TODO: добавить общие методы для добавления научной группы и редактирования
 
 async def edit_field(user: User, bot: Bot, message: Message = None, callback: CallbackQuery = None):
     if 'start' in user.action:
@@ -476,7 +640,7 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
         else:
             list_labs = ''
             for lab in labs.labs:
-                list_labs += f'\n{lab[0] + 1}. {lab[2]}'
+                list_labs += f'\n{lab[0]}. {lab[2]}'
 
             if callback:
                 await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
@@ -489,8 +653,7 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
     elif 'get_id' in user.action:
         try:
             labs = AllLabs()
-            group_id = int(message.text) - 1
-            print(group_id)
+            group_id = int(message.text)
 
             if group_id >= len(labs.labs) or group_id < 0:
                 await bot.send_message(chat_id=user.id,
@@ -525,7 +688,7 @@ async def delete_science_group(user: User, bot: Bot, message: Message = None, ca
                 await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
             list_labs = 'Напиши номер группы, которую хочешь удалить:\n'
             for lab in labs.labs:
-                list_labs += f'\n{lab[0]}. {lab[2]}'
+                list_labs += f'\n{lab[0] + 1}. {lab[2]}'
 
             await bot.send_message(chat_id=user.id,
                                    text=list_labs,
@@ -553,7 +716,7 @@ async def delete_science_group(user: User, bot: Bot, message: Message = None, ca
                                        reply_markup=back_keyboard_without_callback(user).as_markup())
 
             else:
-                lab = Lab(id=int(message.text))
+                lab = Lab(id=group_id)
                 if lab.delete_lab():
                     await bot.send_message(chat_id=user.id,
                                            text=f'Группа {lab.short_name} успешно удалена',
@@ -568,7 +731,7 @@ async def delete_science_group(user: User, bot: Bot, message: Message = None, ca
                                    reply_markup=back_keyboard_without_callback(user).as_markup())
 
 
-async def database_errer_message(user: User, bot: Bot):
+async def database_error_message(user: User, bot: Bot):
     await bot.send_message(chat_id=user.id,
                            text='Что-то не так с базой данных, не могу записать информацию. Попробуй ещё '
                                 'раз или напиши @DelNick99',

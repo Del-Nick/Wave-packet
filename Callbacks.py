@@ -74,6 +74,7 @@ async def science_groups_callback(user: User, callback: CallbackQuery):
     user.update()
 
 
+# TODO: функция не работает вообще, вывода нет. Переписать
 async def inside_scientifit_group(user: User, callback: CallbackQuery):
     _, callback_name, action = callback.data.split('->')
 

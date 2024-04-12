@@ -251,7 +251,7 @@ def back_keyboard_without_callback(user: User, button: str = None):
         _ += '->back'
 
     if button is not None:
-        button = KeyboardButton(
+        button = InlineKeyboardButton(
             text=button,
             callback_data=button)
 

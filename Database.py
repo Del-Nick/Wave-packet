@@ -141,8 +141,6 @@ class Lab:
                     self.contacts = values[7]
                     self.courseworks = None if values[8] is None else json.loads(values[8])
 
-
-
                 return True
 
         except:
@@ -152,7 +150,7 @@ class Lab:
     def add_new_lab(self):
         try:
             labs = AllLabs()
-            self.id = 0 if len(labs.labs) == 0 else max(labs[:][0]) + 1
+            self.id = 1 if len(labs.labs) == 0 else max(labs[:][0]) + 1
             with self.conn.cursor() as cursor:
                 cursor.execute('INSERT INTO Labs (id, full_name, short_name, callback_name, about, main_picture, '
                                'areas, contacts, courseworks) '
@@ -178,30 +176,30 @@ class Lab:
             with self.conn.cursor() as cursor:
                 if self.id is not None:
                     cursor.execute('UPDATE Labs SET full_name=%s, short_name=%s, callback_name=%s, about=%s, '
-                                   'main_picture=%s, areas=%s, contacts=%s, courseworks=%s, WHERE id = %s',
+                                   'main_picture=%s, areas=%s, contacts=%s, courseworks=%s WHERE id = %s',
                                    (self.full_name,
                                     self.short_name,
                                     self.callback_name,
                                     self.about,
                                     self.main_picture,
-                                    self.areas,
+                                    self.areas if self.areas is None else json.dumps(self.areas),
                                     self.contacts,
-                                    self.courseworks,
-                                    self.callback_name,))
+                                    self.courseworks if self.courseworks is None else json.dumps(self.courseworks),
+                                    self.id,))
                     self.conn.commit()
                     return True
 
                 elif self.callback_name is not None:
                     cursor.execute(
                         'UPDATE Labs SET full_name=%s, short_name=%s, about=%s, main_picture=%s, areas=%s, '
-                        'contacts=%s, courseworks=%s, WHERE id = %s',
+                        'contacts=%s, courseworks=%s WHERE callback_name = %s',
                         (self.full_name,
                          self.short_name,
                          self.about,
                          self.main_picture,
-                         self.areas,
+                         self.areas if self.areas is None else json.dumps(self.areas),
                          self.contacts,
-                         self.courseworks,
+                         self.courseworks if self.courseworks is None else json.dumps(self.courseworks),
                          self.callback_name,))
                     self.conn.commit()
                     return True
