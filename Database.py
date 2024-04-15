@@ -138,7 +138,7 @@ class Lab:
                     self.about = values[4]
                     self.main_picture = values[5]
                     self.areas = None if values[6] is None else json.loads(values[6])
-                    self.contacts = values[7]
+                    self.contacts = None if values[7] is None else json.loads(values[7])
                     self.courseworks = None if values[8] is None else json.loads(values[8])
 
                 return True
@@ -150,7 +150,7 @@ class Lab:
     def add_new_lab(self):
         try:
             labs = AllLabs()
-            self.id = 1 if len(labs.labs) == 0 else max(labs[:][0]) + 1
+            self.id = 1 if len(labs.labs) == 0 else labs.labs[-1][0] + 1
             with self.conn.cursor() as cursor:
                 cursor.execute('INSERT INTO Labs (id, full_name, short_name, callback_name, about, main_picture, '
                                'areas, contacts, courseworks) '
@@ -171,7 +171,7 @@ class Lab:
             traceback.print_exc()
             return False
 
-    def update_lab(self):
+    def update(self):
         try:
             with self.conn.cursor() as cursor:
                 if self.id is not None:
@@ -183,7 +183,7 @@ class Lab:
                                     self.about,
                                     self.main_picture,
                                     self.areas if self.areas is None else json.dumps(self.areas),
-                                    self.contacts,
+                                    self.contacts if self.contacts is None else json.dumps(self.contacts),
                                     self.courseworks if self.courseworks is None else json.dumps(self.courseworks),
                                     self.id,))
                     self.conn.commit()
@@ -198,7 +198,7 @@ class Lab:
                          self.about,
                          self.main_picture,
                          self.areas if self.areas is None else json.dumps(self.areas),
-                         self.contacts,
+                         self.contacts if self.contacts is None else json.dumps(self.contacts),
                          self.courseworks if self.courseworks is None else json.dumps(self.courseworks),
                          self.callback_name,))
                     self.conn.commit()

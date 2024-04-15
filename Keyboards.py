@@ -69,7 +69,7 @@ def start_keyboard(user: User):
             return delete_keyboard(user)
 
 
-def science_group_keyboard(user: User, labs: list):
+def science_group_keyboard(user: User, labs: list, total_page: int):
     try:
         page = int(re.search(r'\d{1,2}', user.action).group())
     except ValueError:
@@ -80,23 +80,14 @@ def science_group_keyboard(user: User, labs: list):
     for group_name, collback_name in [(x[2], x[3]) for x in labs[4 * page:4 * page + 4]]:
         keyboard.row(InlineKeyboardButton(
             text=group_name,
-            callback_data=f"{collback_name}->start"))
+            callback_data=f"science_group->{collback_name}->start"))
+        print(len(f"science_group->{collback_name}->start"), f"science_group->{collback_name}->start")
 
     back_button = InlineKeyboardButton(
         text="Меню",
         callback_data='science_group->back_to_start_menu')
 
-    if page == 0:
-        keyboard.row(back_button,
-                     InlineKeyboardButton(
-                         text="▶",
-                         callback_data='science_group->page+'))
-    elif page == 3:
-        keyboard.row(InlineKeyboardButton(
-            text="◀",
-            callback_data='science_group->page-'),
-            back_button)
-    else:
+    if total_page > 1:
         keyboard.row(InlineKeyboardButton(
             text="◀",
             callback_data='science_group->page-'),
@@ -106,9 +97,8 @@ def science_group_keyboard(user: User, labs: list):
                 callback_data='science_group->page+')
         )
 
-    # keyboard.row(InlineKeyboardButton(
-    #     text="🔙  Назад  🔙",
-    #     callback_data='science_group_🔙  Назад  🔙'))
+    else:
+        keyboard.row(back_button)
 
     if user.admin:
         keyboard.row(InlineKeyboardButton(
@@ -121,15 +111,13 @@ def science_group_keyboard(user: User, labs: list):
 def areas_courseworks_contacts_keyboard(user: User, lab: Lab):
     keyboard = InlineKeyboardBuilder()
 
-    buttons = ['Научные направления']
-
     keyboard.row(InlineKeyboardButton(
         text="Научные направления",
-        callback_data=user.action.replace('start', 'areas->0')))
+        callback_data=user.action.replace('start', 'areas->page_0')))
 
     keyboard.row(InlineKeyboardButton(
         text="Курсовые работы",
-        callback_data=user.action.replace('start', 'courseworks_0')),
+        callback_data=user.action.replace('start', 'courseworks_->page_0')),
         InlineKeyboardButton(
             text="Контакты",
             callback_data=user.action.replace('start', 'contacts')))
@@ -169,28 +157,18 @@ def slider_keyboard(user: User,
         text="Назад",
         callback_data=f'{"->".join(user.action.split("->")[:-2])}->start')
 
-    if page == 0:
-        keyboard.row(back_button,
-                     InlineKeyboardButton(
-                         text="▶",
-                         callback_data=f'{lab.callback_name}->{type_keyboard}_+'))
-
-    elif page == total_pages - 1:
+    if total_pages > 1:
         keyboard.row(
             InlineKeyboardButton(
                 text="◀",
-                callback_data=f'{lab.callback_name}->{type_keyboard}_-'),
-            back_button)
-
-    else:
-        keyboard.row(
-            InlineKeyboardButton(
-                text="◀",
-                callback_data=f'{lab.callback_name}->{type_keyboard}_-'),
+                callback_data=f'{lab.callback_name}->{type_keyboard}->page_{page}-'),
             back_button,
             InlineKeyboardButton(
                 text="▶",
-                callback_data=f'{lab.callback_name}->{type_keyboard}_+'))
+                callback_data=f'{lab.callback_name}->{type_keyboard}->page_{page}+'))
+
+    else:
+        keyboard.row(back_button)
 
     if user.admin:
         keyboard.row(InlineKeyboardButton(

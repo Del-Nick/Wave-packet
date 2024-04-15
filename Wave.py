@@ -74,10 +74,10 @@ async def callback_handler(callback: types.CallbackQuery):
         logger(callback=callback, user=user)
 
         if callback.data.startswith('registration'):
-            await registration_callback(user, callback)
+            await registration_callback(user=user, callback=callback)
 
         elif callback.data.startswith('start'):
-            await start_callback(user, callback)
+            await start_callback(user=user, callback=callback)
 
         elif callback.data.startswith('about'):
             await callback.message.edit_media(InputMediaPhoto(media=error_pictures,
@@ -85,7 +85,7 @@ async def callback_handler(callback: types.CallbackQuery):
                                               reply_markup=back_keyboard(user).as_markup())
 
         elif callback.data.startswith('science_group'):
-            await science_groups_callback(user, callback)
+            await science_groups_callback(user=user, callback=callback, bot=bot)
 
         elif callback.data.startswith('admin'):
             await admin_panel(user=user, bot=bot, callback=callback)
@@ -106,7 +106,7 @@ async def handler(message: types.Message):
                 await registration_handler(user, message, bot)
 
             case 'start':
-                await start_handler(user, message, bot)
+                await start_handler(user=user, bot=bot, message=message)
 
             case 'admin':
                 await admin_panel(user=user, bot=bot, message=message)
@@ -114,46 +114,6 @@ async def handler(message: types.Message):
             case _:
                 await message.answer(text='Пока я не понимаю, но я активно учусь',
                                      reply_markup=delete_keyboard(user).as_markup())
-
-
-# @dp.callback_query(F.data.startswith("registration->"))
-# async def registration(callback: types.CallbackQuery):
-#     user = User(callback.from_user.id, callback.from_user.username)
-#     logger(callback=callback, user=user)
-#     await registration_callback(user, callback)
-
-
-# @dp.callback_query(F.data.startswith("science_group->"))
-# async def science_groups(callback: types.CallbackQuery):
-#     user = User(callback.from_user.id, callback.from_user.username)
-#     logger(callback=callback, user=user)
-#     if user.status is not None:
-#         await science_groups_callback(user, callback)
-#     else:
-#         await science_groups_callback(user, callback)
-
-
-# @dp.callback_query(F.data.startswith("about"))
-# async def science_groups(callback: types.CallbackQuery):
-#     user = User(callback.from_user.id, callback.from_user.username)
-#     logger(callback=callback, user=user)
-#     await callback.message.edit_media(InputMediaPhoto(media=error_pictures,
-#                                                       caption='Упс, кажется, тут пусто'),
-#                                       reply_markup=back_keyboard(user).as_markup())
-
-
-@dp.callback_query(F.data.startswith("admin"))
-async def science_groups(callback: types.CallbackQuery):
-    user = User(callback.from_user.id, callback.from_user.username)
-    logger(callback=callback, user=user)
-    await admin_panel(user=user, callback=callback, bot=bot)
-
-
-# @dp.callback_query(F.data.startswith("delete->"))
-# async def delete(callback: types.CallbackQuery):
-#     user = User(callback.from_user.id, callback.from_user.username)
-#     logger(callback=callback, user=user)
-#     await delete_user_callback(user, callback)
 
 
 # Запуск процесса поллинга новых апдейтов

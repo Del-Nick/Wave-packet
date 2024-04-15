@@ -225,3 +225,196 @@ ________________________________________________________________________________
 2024-04-11 00:25:35.505626  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: admin->start
 2024-04-11 00:25:47.557991  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->joke
 2024-04-11 00:25:54.441461  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-12 20:52:17.387549  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: start
+2024-04-12 20:52:23.686088  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: science_group->start
+2024-04-12 20:52:30.209850  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: photonics_&_spectroscopy->start
+2024-04-12 20:53:19.389105  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: photonics_&_spectroscopy->start
+2024-04-12 20:55:38.902598  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: photonics_&_spectroscopy->start
+2024-04-12 20:55:47.389049  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: photonics_&_spectroscopy->start
+2024-04-12 20:57:44.649267  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: photonics_&_spectroscopy->start
+2024-04-12 20:57:59.964224  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->back_to_start_menu
+2024-04-12 20:58:05.395170  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->start
+2024-04-12 20:58:11.853291  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_&_spectroscopy->start
+2024-04-12 21:00:19.792473  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->back_to_start_menu
+2024-04-12 21:00:24.990844  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->start
+2024-04-12 21:00:35.999345  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_&_spectroscopy->start
+2024-04-12 21:03:32.591354  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->back_to_start_menu
+2024-04-12 21:03:38.075425  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->start
+2024-04-12 21:03:43.822856  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:05:52.626153  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:07:54.160891  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:08:40.433187  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:10:45.981927  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:11:32.927507  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:13:35.591214  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:14:07.015213  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:14:45.639203  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-12 21:14:52.600819  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 10:51:46.774569  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 10:54:05.332631  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 10:55:50.027754  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 10:56:02.020948  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->0
+2024-04-15 10:56:56.272864  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->0
+2024-04-15 11:01:31.332789  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->0
+2024-04-15 11:02:53.907230  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->0
+2024-04-15 11:33:04.475817  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->0
+2024-04-15 11:34:53.748282  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->0
+2024-04-15 11:40:54.169865  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: photonics_and_spectroscopy->areas_+
+2024-04-15 11:44:54.528834  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: photonics_and_spectroscopy->areas_+
+2024-04-15 11:45:26.022145  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 11:53:46.814234  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 11:58:21.180265  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 12:00:11.760311  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Message: /start
+2024-04-15 12:00:15.767892  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 12:00:24.246137  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 12:00:33.667491  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-15 12:01:16.006818  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-15 12:01:41.525061  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-15 12:02:30.144607  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-15 12:02:56.896690  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 12:03:08.261637  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->page+
+2024-04-15 12:05:23.840504  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->page+
+2024-04-15 12:05:56.651502  |  Nickname: DelNick99  |  Action: science_group->page_1  |  Callback: science_group->page+
+2024-04-15 12:10:31.731357  |  Nickname: DelNick99  |  Action: science_group->page_2  |  Callback: science_group->back_to_start_menu
+2024-04-15 12:10:37.994642  |  Nickname: DelNick99  |  Action: science_group->page_2  |  Callback: science_group->start
+2024-04-15 12:10:49.326160  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 12:16:01.804115  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Photo: AgACAgIAAxkBAAIDoWYc8E9rqmhkVMKQYNcZyiXZ0jjoAAJp1zEbDB_pSGD_Zu4isIKCAQADAgADbQADNAQ
+2024-04-15 12:18:58.777774  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: /start
+2024-04-15 12:19:11.310081  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Message: /start
+2024-04-15 12:19:15.153660  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 12:19:22.465461  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 12:19:36.960604  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 12:19:49.323507  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 12:19:57.389294  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-15 12:20:37.548857  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Message: /start
+2024-04-15 12:20:47.234673  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 12:20:52.937689  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-15 12:21:01.117251  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-15 12:21:20.455834  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-15 12:22:16.465043  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->back_to_start_menu
+2024-04-15 12:22:21.936913  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: admin->start
+2024-04-15 12:23:26.922658  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->add_science_group->start
+2024-04-15 12:23:39.385107  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_full_name  |  Message: Группа нелинейной оптики и сверхсильных
+световых полей
+2024-04-15 12:24:00.108947  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_full_name  |  Message: Группа нелинейной оптики и сверхсильных
+световых полей
+2024-04-15 12:24:25.517705  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_full_name  |  Callback: admin->back
+2024-04-15 12:24:29.785230  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->add_science_group->start
+2024-04-15 12:24:35.693045  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_full_name  |  Message: Группа нелинейной оптики и сверхсильных
+световых полей
+2024-04-15 12:25:39.966205  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_full_name  |  Message: Группа нелинейной оптики и сверхсильных
+световых полей
+2024-04-15 12:26:13.006180  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_full_name  |  Message: Группа нелинейной оптики и сверхсильных
+световых полей
+2024-04-15 12:29:21.301689  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_full_name  |  Message: Группа нелинейной оптики и сверхсильных
+световых полей
+2024-04-15 12:30:02.963389  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_short_name_id=2  |  Message: Сверхсильные световые поля
+2024-04-15 12:30:42.294283  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_callback_name_id=2  |  Message: super_strong_lihgt_field
+2024-04-15 12:34:36.832600  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_main_picture_id=2  |  
+2024-04-15 12:34:48.831584  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_main_picture_id=2  |  Photo: AgACAgIAAxkBAAIDwWYc9LZ3-_tsZikS-RN086pj9A9XAAKC1zEbDB_pSBYJbesCj4WRAQADAgADeAADNAQ
+2024-04-15 12:35:29.118581  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_about_id=2  |  Message: Все основные научные направления лаборатории формулируются вокруг исследования нелинейно-оптических процессов при взаимодействии интенсивного лазерного излучения с веществом. Важно, что в лаборатории мы сами создаём сверхширокополосные (от рентгеновского до терагерцевого диапазона) источники сверхкоротких импульсов с относительно большой энергией, что позволяет при фокусировке такого излучения на объект достигать интенсивностей выше 10 ТВт/см^2, что достаточно для того, чтобы отклик вещества на такое воздействие
+становился нелинейным, возникала неравновесная электронная плазма. Дальнейшее увеличение лазерного поля доводит режим воздействия до режима сверхсильного светового поля
+(напряженность лазерного поля сравнима с напряженностью поля, действующей на электрон на первой боровской орбите в атоме водорода). В этом случае отклик вещества приобретает «новые краски»: возникает туннельный эффект по внешнем переменном лазерном поле, генерируются кратные основной частоте воздействующего лазерного поля нечетные гармоники, обеспечивая доступ к генерации когерентного рентгеновского излучения и генерации аттосекундных импульсов. Наличие сверхширокополосного источника излучения позволяет осуществлять воздействие на объекты и исследовать нелинейный отклик в совершенно новом качестве, создавая «режим сильного поля» при мультиспектральном воздействии.
+2024-04-15 12:36:28.046686  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_about_id=2  |  Message: Все основные научные направления лаборатории формулируются вокруг исследования нелинейно-оптических процессов при взаимодействии интенсивного лазерного излучения с веществом. Важно, что в лаборатории мы сами создаём сверхширокополосные (от рентгеновского до терагерцевого диапазона) источники сверхкоротких импульсов с относительно большой энергией, что позволяет при фокусировке такого излучения на объект достигать интенсивностей выше 10 ТВт/см^2, что достаточно для того, чтобы отклик вещества на такое воздействие
+становился нелинейным, возникала неравновесная электронная плазма. Дальнейшее увеличение лазерного поля доводит режим воздействия до режима сверхсильного светового поля
+(напряженность лазерного поля сравнима с напряженностью поля, действующей на электрон на первой боровской орбите в атоме водорода). В этом случае отклик вещества приобретает «новые краски»: возникает туннельный эффект по внешнем переменном лазерном поле, генерируются кратные основной частоте воздействующего лазерного поля нечетные гармоники, обеспечивая доступ к генерации когерентного рентгеновского излучения и генерации аттосекундных импульсов. Наличие сверхширокополосного источника излучения позволяет осуществлять воздействие на объекты и исследовать нелинейный отклик в совершенно новом качестве, создавая «режим сильного поля» при мультиспектральном воздействии.
+2024-04-15 12:38:27.537240  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_areas_id=2  |  Message: Название: Перспективные фемтосекундные инфракрасные лазеры
+
+
+Описание: Изобретение лазеров (Нобелевская премия 1960 г.) открыло беспрецедентные возможности к
+исследованию взаимодействия света с веществом. Для современных научных приложений уже недостаточно «обычных» фемтосекундных лазеров ближнего инфракрасного (ИК) диапазона. Мощные фемтосекундные лазерные системы (Нобелевская премия 2018 г.) открывают путь к экстремальному воздействию на вещество.
+
+В лаборатории ведутся исследования новых активных лазерных сред и нелинейно-оптических кристаллов, которые могут быть использованы для создания мощных когерентных источников в более длинноволновом среднем и дальнем ИК диапазонах. На основе них в лаборатории
+разработаны уникальные лазерные источники, которые позволяют реализовывать недоступные ранее режимы воздействия на вещество как в фундаментальных исследованиях (генерация
+гармоник высокого порядка и аттосекундных импульсов), так и для прикладных технологических задач (объёмная микрообработка кремния).
+
+
+Контакты: н.с. Андрей Владимирович Пушкин, к. 307, 216 КНО, av.pushkin@physics.msu.ru
+2024-04-15 12:39:13.738800  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_areas_id=2  |  Message: Название: Перспективные фемтосекундные инфракрасные лазеры
+
+
+Описание: Изобретение лазеров (Нобелевская премия 1960 г.) открыло беспрецедентные возможности к
+исследованию взаимодействия света с веществом. Для современных научных приложений уже недостаточно «обычных» фемтосекундных лазеров ближнего инфракрасного (ИК) диапазона. Мощные фемтосекундные лазерные системы (Нобелевская премия 2018 г.) открывают путь к экстремальному воздействию на вещество.
+
+В лаборатории ведутся исследования новых активных лазерных сред и нелинейно-оптических кристаллов, которые могут быть использованы для создания мощных когерентных источников в более длинноволновом среднем и дальнем ИК диапазонах. На основе них в лаборатории
+разработаны уникальные лазерные источники, которые позволяют реализовывать недоступные ранее режимы воздействия на вещество как в фундаментальных исследованиях (генерация
+гармоник высокого порядка и аттосекундных импульсов), так и для прикладных технологических задач (объёмная микрообработка кремния).
+
+
+Контакты: н.с. Андрей Владимирович Пушкин, к. 307, 216 КНО, av.pushkin@physics.msu.ru
+2024-04-15 12:40:06.445174  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_areas_id=2  |  Message: Название: Перспективные фемтосекундные инфракрасные лазеры
+
+
+Описание: Изобретение лазеров (Нобелевская премия 1960 г.) открыло беспрецедентные возможности к
+исследованию взаимодействия света с веществом. Для современных научных приложений уже недостаточно «обычных» фемтосекундных лазеров ближнего инфракрасного (ИК) диапазона. Мощные фемтосекундные лазерные системы (Нобелевская премия 2018 г.) открывают путь к экстремальному воздействию на вещество.
+
+В лаборатории ведутся исследования новых активных лазерных сред и нелинейно-оптических кристаллов, которые могут быть использованы для создания мощных когерентных источников в более длинноволновом среднем и дальнем ИК диапазонах. На основе них в лаборатории
+разработаны уникальные лазерные источники, которые позволяют реализовывать недоступные ранее режимы воздействия на вещество как в фундаментальных исследованиях (генерация
+гармоник высокого порядка и аттосекундных импульсов), так и для прикладных технологических задач (объёмная микрообработка кремния).
+
+
+Контакты: н.с. Андрей Владимирович Пушкин, к. 307, 216 КНО, av.pushkin@physics.msu.ru
+2024-04-15 12:41:36.665572  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_picture_to_area_id=2  |  Photo: AgACAgIAAxkBAAIDzGYc9k64PVVqxlH2Uq8-51-PK5zMAAKO1zEbDB_pSBJ5an2bC7xiAQADAgADeAADNAQ
+2024-04-15 12:41:45.566848  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_picture_to_area_id=2  |  Callback: Следующее направление
+2024-04-15 12:41:53.951949  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_areas_id=2  |  Callback: Далее
+2024-04-15 12:48:39.543699  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_contacts_id=2  |  Message: доцент Фёдор Викторович Потёмкин
+к. 304 КНО
+potemkin@physics.msu.ru
+
+профессор Вячеслав Михайлович Гордиенко, к.303 КНО
+v_m_gord@mail.ru
+2024-04-15 12:49:57.155028  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_contacts_id=2  |  Message: доцент Фёдор Викторович Потёмкин
+к. 304 КНО
+potemkin@physics.msu.ru
+
+профессор Вячеслав Михайлович Гордиенко, к.303 КНО
+v_m_gord@mail.ru
+2024-04-15 12:50:54.295791  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_contacts_id=2  |  Message: доцент Фёдор Викторович Потёмкин
+к. 304 КНО
+potemkin@physics.msu.ru
+
+профессор Вячеслав Михайлович Гордиенко, к.303 КНОv_m_gord@mail.ru
+2024-04-15 12:51:21.717702  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_contacts_id=2  |  Message: доцент Фёдор Викторович Потёмкин
+к. 304 КНО
+potemkin@physics.msu.ru
+
+профессор Вячеслав Михайлович Гордиенко, к.303 КНО
+v_m_gord@mail.ru
+2024-04-15 12:51:31.078960  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_contacts_id=2  |  Message: доцент Фёдор Викторович Потёмкин
+к. 304 КНО
+potemkin@physics.msu.ru
+
+профессор Вячеслав Михайлович Гордиенко
+к.303 КНО
+v_m_gord@mail.ru
+2024-04-15 12:52:54.351986  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_contacts_id=2  |  Message: доцент Фёдор Викторович Потёмкин
+к. 304 КНО
+potemkin@physics.msu.ru
+
+профессор Вячеслав Михайлович Гордиенко
+к. 303 КНО
+v_m_gord@mail.ru
+2024-04-15 12:53:26.906535  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_contacts_id=2  |  Message: доцент Фёдор Викторович Потёмкин
+к. 304 КНО
+potemkin@physics.msu.ru
+
+профессор Вячеслав Михайлович Гордиенко
+к. 303 КНО
+v_m_gord@mail.ru
+2024-04-15 12:54:54.006650  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_contacts_id=2  |  Message: доцент Фёдор Викторович Потёмкин
+к. 304 КНО
+potemkin@physics.msu.ru
+
+профессор Вячеслав Михайлович Гордиенко
+к. 303 КНО
+v_m_gord@mail.ru
+2024-04-15 12:55:01.650069  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_courseworks_id=2  |  Callback: Завершить
+2024-04-15 12:55:05.973126  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: start
+2024-04-15 12:55:09.274023  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: science_group->start
+2024-04-15 12:55:16.671980  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-15 12:56:25.731121  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->start
+2024-04-15 12:56:35.513817  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-15 12:59:26.740105  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->start
+2024-04-15 12:59:35.195164  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-15 13:04:51.781303  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-15 13:05:13.326825  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->super_strong_lihgt_field->areas->page_0
