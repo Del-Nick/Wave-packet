@@ -418,3 +418,389 @@ v_m_gord@mail.ru
 2024-04-15 12:59:35.195164  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
 2024-04-15 13:04:51.781303  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
 2024-04-15 13:05:13.326825  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->super_strong_lihgt_field->areas->page_0
+2024-04-25 12:24:31.480546  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->back_to_start_menu
+2024-04-25 12:24:40.649419  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: admin->start
+2024-04-25 12:24:46.971776  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->add_science_group->start
+2024-04-25 12:25:14.269283  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->add_science_group->start
+2024-04-25 12:26:06.836688  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->add_science_group->start
+2024-04-25 12:27:08.235241  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: start
+2024-04-25 12:27:12.364816  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 12:27:16.069636  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->add_science_group->start
+2024-04-25 12:30:10.858057  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->add_science_group->start
+2024-04-25 12:30:21.214177  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 12:30:35.929128  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 12:30:39.214579  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->add_science_group->start
+2024-04-25 12:30:44.875084  |  Nickname: DelNick99  |  Action: admin->add_science_group->add_full_name  |  Callback: admin->back
+2024-04-25 12:37:57.406944  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 12:38:06.730092  |  Nickname: DelNick99  |  Action: admin->start  |  Message: 3
+2024-04-25 12:44:52.987108  |  Nickname: DelNick99  |  Action: admin->start  |  Message: 3
+2024-04-25 12:44:58.768522  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->back
+2024-04-25 12:45:07.228345  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 12:49:06.749421  |  Nickname: DelNick99  |  Action: admin->start  |  Message: 3
+2024-04-25 12:49:22.835198  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 12:49:34.896820  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 12:49:38.288513  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 12:49:43.288023  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 12:51:09.003738  |  Nickname: DelNick99  |  Action: admin->start  |  Message: 3
+2024-04-25 12:53:18.322070  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 12:53:23.380627  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 12:53:58.738730  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 12:57:23.240279  |  Nickname: DelNick99  |  Action: admin->start  |  Message: 3
+2024-04-25 12:57:30.540099  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 12:57:36.010437  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 12:57:39.810323  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 12:57:43.606339  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 12:58:20.306241  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 12:58:28.906665  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: start
+2024-04-25 13:13:42.008452  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 13:13:47.430480  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 13:13:58.834763  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 3
+2024-04-25 13:14:17.881336  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 13:15:33.716527  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 13:15:53.744258  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: full_name
+2024-04-25 13:17:18.090034  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=1  |  Callback: admin->back
+2024-04-25 13:17:22.482567  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 13:17:29.927987  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 13:17:39.474139  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: full_name
+2024-04-25 13:18:37.596802  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=1  |  Message: Сверхсильные поля
+2024-04-25 14:13:55.690285  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=1  |  Message: /start
+2024-04-25 14:13:59.139675  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=1  |  Callback: admin->start
+2024-04-25 14:14:04.062891  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 14:14:13.636328  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:22:41.100854  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: admin->start
+2024-04-25 14:23:42.092525  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: admin->start
+2024-04-25 14:27:41.384184  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Message: /start
+2024-04-25 14:27:44.943870  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: admin->start
+2024-04-25 14:27:49.997885  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 14:27:56.723229  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: admin->start
+2024-04-25 14:28:53.677614  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: admin->start
+2024-04-25 14:28:56.306739  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: /start
+2024-04-25 14:29:01.090014  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: admin->start
+2024-04-25 14:29:06.310745  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 14:29:12.369452  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: back
+2024-04-25 14:29:17.992334  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 14:29:26.046901  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 0
+2024-04-25 14:30:05.416233  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:31:17.290654  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:33:27.804485  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:33:47.878268  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 1
+2024-04-25 14:34:51.391174  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: back
+2024-04-25 14:34:57.461487  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 14:35:05.397653  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:35:51.119768  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:36:12.148069  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:37:35.752944  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:37:53.259451  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: back
+2024-04-25 14:37:59.430929  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 14:38:13.247149  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 14:39:22.003226  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: back
+2024-04-25 14:39:28.031752  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 14:39:35.207378  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Message: 2
+2024-04-25 15:19:32.510542  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: admin->start
+2024-04-25 15:20:11.270407  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Message: /start
+2024-04-25 15:20:13.442928  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Message: /start
+2024-04-25 15:20:19.163927  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: admin->start
+2024-04-25 15:20:26.808489  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->joke
+2024-04-25 15:20:33.894989  |  Nickname: DelNick99  |  Action: admin->joke  |  Callback: back
+2024-04-25 15:20:39.889282  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:22:40.766696  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: back
+2024-04-25 15:22:47.982516  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:24:31.808489  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 15:24:36.865117  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:29:01.060456  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 15:29:05.309402  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 15:29:10.974915  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:29:35.088484  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 15:29:39.363550  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 15:29:42.782631  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:30:22.769774  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 15:30:26.260760  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 15:30:31.218001  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:33:46.589740  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 15:33:49.985965  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 15:33:54.096638  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:34:21.974633  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 15:34:25.385173  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 15:34:28.990644  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:35:03.469607  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 15:35:06.985370  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 15:35:12.184872  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:36:18.932625  |  Nickname: DelNick99  |  Action: admin->start  |  Message: /start
+2024-04-25 15:36:22.296452  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->start
+2024-04-25 15:36:39.778439  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:37:00.530126  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: back
+2024-04-25 15:37:04.143033  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:37:42.798532  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 12
+2024-04-25 15:41:31.635222  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: back
+2024-04-25 15:41:35.257470  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-25 15:41:40.640275  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-25 15:43:22.793649  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 09:02:57.835379  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: back
+2024-04-27 09:03:04.437020  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: start
+2024-04-27 09:03:08.617466  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: science_group->start
+2024-04-27 09:03:26.310337  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 09:03:37.208473  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 09:11:35.352479  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 09:15:45.123937  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 09:15:52.581768  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 09:16:31.854537  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 09:17:33.651633  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 09:17:41.162576  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 09:18:00.809048  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 09:18:24.496722  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 09:18:32.862174  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 09:18:44.547219  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 09:19:52.022030  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-27 09:20:14.648458  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->super_strong_lihgt_field->areas->page_0
+2024-04-27 09:34:27.931611  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Message: /start
+2024-04-27 09:34:34.212709  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->start
+2024-04-27 09:34:49.974230  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 09:35:03.691730  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->courseworks_->page_0
+2024-04-27 09:41:36.962920  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 09:42:10.304641  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 09:42:27.046784  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 09:43:01.002701  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->back_to_start_menu
+2024-04-27 09:43:08.459319  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: admin->start
+2024-04-27 09:43:22.175690  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 09:43:28.730897  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 1
+2024-04-27 09:43:38.069263  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=0  |  Callback: contacts
+2024-04-27 09:44:38.705744  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_contacts_id=0  |  Callback: back
+2024-04-27 09:44:44.234501  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 09:44:59.851791  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 1
+2024-04-27 09:46:08.152234  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=0  |  Callback: back
+2024-04-27 09:46:24.475004  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 09:46:33.496267  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 1
+2024-04-27 09:46:45.826691  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: contacts
+2024-04-27 09:48:28.946684  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_contacts_id=1  |  Message: доцент Федотов Андрей Борисович
+КНО, к. 508
+a.b.fedotov@physics.msu.ru
+
+c.н.с., Ланин Александр Александрович
+КНО, к. 312
+lanin@physics.msu.ru
+
+с.н.с Дмитрий Александрович Сидоров-Бирюков
+КНО, к. 312
+dima-sidorov@mail.ru
+2024-04-27 09:48:36.610612  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=1  |  Callback: back
+2024-04-27 09:48:43.224909  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: start
+2024-04-27 09:48:46.878617  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: science_group->start
+2024-04-27 09:48:58.780127  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 09:57:11.325005  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 09:58:26.626445  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Message: /start
+2024-04-27 09:58:34.395670  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: admin->start
+2024-04-27 09:58:37.812582  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 09:58:43.083596  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 1
+2024-04-27 09:59:41.729101  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: contacts
+2024-04-27 10:01:20.236041  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_contacts_id=1  |  Message: доцент Федотов Андрей Борисович
+КНО, к. 508
+a.b.fedotov@physics.msu.ru
+
+c.н.с., Ланин Александр Александрович
+КНО, к. 312
+lanin@physics.msu.ru
+
+с.н.с Дмитрий Александрович Сидоров-Бирюков
+КНО, к. 312
+dima-sidorov@mail.ru
+2024-04-27 10:01:27.930563  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=1  |  Message: /start
+2024-04-27 10:01:32.659007  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=1  |  Callback: science_group->start
+2024-04-27 10:01:38.960350  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:01:47.635764  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->contacts
+2024-04-27 10:16:19.520471  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Message: /start
+2024-04-27 10:16:26.498544  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: admin->start
+2024-04-27 10:16:31.016553  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 10:16:39.399479  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 1
+2024-04-27 10:16:48.200664  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: contacts
+2024-04-27 10:17:00.343025  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_contacts_id=1  |  Message: доцент Федотов Андрей Борисович
+КНО, к. 508
+a.b.fedotov@physics.msu.ru
+
+c.н.с., Ланин Александр Александрович
+КНО, к. 312
+lanin@physics.msu.ru
+
+с.н.с Дмитрий Александрович Сидоров-Бирюков
+КНО, к. 312
+dima-sidorov@mail.ru
+2024-04-27 10:23:15.790997  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=1  |  Callback: contacts
+2024-04-27 10:23:32.583763  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=1  |  Callback: contacts
+2024-04-27 10:23:39.596847  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=1  |  Callback: back
+2024-04-27 10:23:43.383568  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 10:23:48.876381  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 1
+2024-04-27 10:23:58.339751  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=1  |  Callback: contacts
+2024-04-27 10:24:07.533160  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_contacts_id=1  |  Message: доцент Федотов Андрей Борисович
+КНО, к. 508
+a.b.fedotov@physics.msu.ru
+
+c.н.с., Ланин Александр Александрович
+КНО, к. 312
+lanin@physics.msu.ru
+
+с.н.с Дмитрий Александрович Сидоров-Бирюков
+КНО, к. 312
+dima-sidorov@mail.ru
+2024-04-27 10:27:58.028640  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=1  |  Message: /start
+2024-04-27 10:28:01.785295  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=1  |  Callback: science_group->start
+2024-04-27 10:28:07.909653  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:28:18.918966  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->contacts
+2024-04-27 10:29:55.656033  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 10:30:02.832340  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:31:54.625914  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 10:32:01.619137  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:34:35.640696  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 10:34:43.129677  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:34:59.715961  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->contacts
+2024-04-27 10:35:57.237527  |  Nickname: DelNick99  |  Action: start  |  Callback: start
+2024-04-27 10:37:51.028065  |  Nickname: DelNick99  |  Action: start  |  Callback: science_group->start
+2024-04-27 10:37:58.352099  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:38:09.129491  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->contacts
+2024-04-27 10:38:18.526794  |  Nickname: DelNick99  |  Action: start  |  Callback: start
+2024-04-27 10:40:00.356833  |  Nickname: DelNick99  |  Action: start  |  Callback: science_group->start
+2024-04-27 10:41:29.439690  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:41:37.198750  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 10:43:13.879295  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 10:43:54.657745  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:44:02.766882  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 10:44:15.630593  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 10:47:12.491079  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 10:47:20.491264  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 10:47:32.979430  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 11:25:50.763252  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:26:00.542262  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Message: /start
+2024-04-27 11:26:04.152424  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: about
+2024-04-27 11:26:48.523297  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: about
+2024-04-27 11:26:52.566577  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:27:04.274379  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 11:27:14.265124  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 11:27:28.470374  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:27:36.551893  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 11:27:48.061740  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 11:33:51.702218  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:33:59.527561  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 11:34:08.775085  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:38:48.730294  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:41:24.103111  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:41:55.049235  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Message: /start
+2024-04-27 11:42:09.054289  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Message: /start
+2024-04-27 11:43:04.518958  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Message: Пн
+2024-04-27 11:43:08.312591  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: /start
+2024-04-27 11:43:11.644585  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Message: /start
+2024-04-27 11:43:18.020463  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->start
+2024-04-27 11:43:23.850519  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:43:31.425906  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 11:43:49.353640  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 11:44:27.677259  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 11:44:35.274305  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 11:44:40.936267  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 11:44:48.375674  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 13:32:14.412667  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 13:33:16.626045  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 13:33:31.690184  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 13:33:40.138171  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:33:51.733933  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 13:39:08.172036  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 13:39:14.660552  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:39:22.766967  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 13:41:35.054103  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 13:41:41.128927  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:41:48.732271  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 13:46:14.010812  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 13:46:38.521965  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 13:46:44.068293  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:46:51.906100  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 13:47:08.650982  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:48:46.194053  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:52:08.910933  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:52:17.233104  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 13:52:27.917059  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:52:43.243536  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 13:52:54.808524  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:53:31.151109  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 13:53:39.637007  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:54:21.193597  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Message: /start
+2024-04-27 13:54:24.797831  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 13:54:30.760084  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 13:54:50.512241  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->page_0
+2024-04-27 13:55:01.022912  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 14:03:15.645913  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 14:03:24.520907  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->areas->page_0
+2024-04-27 14:03:33.644101  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->areas->page_0  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 14:03:41.740795  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->photonics_and_spectroscopy->contacts
+2024-04-27 14:03:50.539840  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->contacts  |  Callback: science_group->photonics_and_spectroscopy->start
+2024-04-27 14:05:24.581776  |  Nickname: DelNick99  |  Action: science_group->photonics_and_spectroscopy->start  |  Callback: science_group->start
+2024-04-27 14:05:34.115969  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->back_to_start_menu
+2024-04-27 14:05:40.030803  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: admin->start
+2024-04-27 14:05:54.976595  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 14:06:06.735006  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 14:06:15.619701  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:06:21.050028  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: Привет
+2024-04-27 14:08:08.208864  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: /start
+2024-04-27 14:08:14.791851  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: Ов
+2024-04-27 14:08:21.026503  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: /start
+2024-04-27 14:08:54.527030  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: /start
+2024-04-27 14:09:00.897225  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Callback: admin->start
+2024-04-27 14:09:05.492096  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 14:09:11.490781  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 14:09:21.743024  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:13:32.625888  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Message: /start
+2024-04-27 14:13:36.563939  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: science_group->start
+2024-04-27 14:13:42.253708  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->back_to_start_menu
+2024-04-27 14:13:50.130702  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: admin->start
+2024-04-27 14:14:33.851893  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: start
+2024-04-27 14:14:36.070142  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 14:14:45.189422  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 14:14:54.071208  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:14:59.189863  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: Привет
+2024-04-27 14:26:35.544842  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=3  |  Callback: full_name
+2024-04-27 14:26:41.495852  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=3  |  Callback: back
+2024-04-27 14:26:48.039831  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 14:26:56.698768  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 14:27:04.901252  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:27:11.511013  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: Привет
+2024-04-27 14:27:48.363224  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:28:11.361967  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:29:42.028866  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:30:52.465955  |  Nickname: DelNick99  |  Action: admin->add_science_group->selecting_field_id=2  |  Callback: back
+2024-04-27 14:30:58.389058  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 14:31:04.831199  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 14:31:15.022318  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:31:24.773645  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: Ало
+2024-04-27 14:31:35.968969  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: full_name
+2024-04-27 14:31:52.881664  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_full_name_id=2  |  Message: Группа нелинейной оптики и сверхсильных световых полей
+2024-04-27 14:32:22.280628  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: short_name
+2024-04-27 14:34:15.468825  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Message: Группа нелинейной оптики и сверхсильных световых полей
+2024-04-27 14:34:24.855029  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Message: /start
+2024-04-27 14:34:28.505823  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: admin->start
+2024-04-27 14:34:32.050267  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 14:34:42.542325  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 14:34:52.112115  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: short_name
+2024-04-27 14:35:16.313784  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_short_name_id=2  |  Message: Все основные научные направления лаборатории формулируются вокруг исследования нелинейно-оптических процессов при взаимодействии интенсивного лазерного излучения с веществом. Важно, что в лаборатории мы сами создаём сверхширокополосные (от рентгеновского до терагерцевого диапазона) источники сверхкоротких импульсов с относительно большой энергией, что позволяет при фокусировке такого излучения на объект достигать интенсивностей выше 10 ТВт/см^2, что достаточно для того, чтобы отклик вещества на такое воздействие становился нелинейным, возникала неравновесная электронная плазма. Дальнейшее увеличение лазерног
+2024-04-27 14:35:31.050261  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_short_name_id=2  |  Message: привет
+2024-04-27 14:35:44.662020  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: short_name
+2024-04-27 14:35:56.759822  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_short_name_id=2  |  Message: Сверхсильные световые поля
+2024-04-27 14:36:12.716741  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: about
+2024-04-27 14:37:52.085009  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: about
+2024-04-27 14:39:06.494004  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: back
+2024-04-27 14:39:14.518707  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 14:39:20.983642  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 14:39:29.671931  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: about_lab
+2024-04-27 14:40:15.768877  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: back
+2024-04-27 14:40:21.209749  |  Nickname: DelNick99  |  Action: admin->start  |  Callback: admin->edit_science_group->start
+2024-04-27 14:40:26.834383  |  Nickname: DelNick99  |  Action: admin->edit_science_group->get_id  |  Callback: 2
+2024-04-27 14:40:34.216920  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: lab_about
+2024-04-27 14:44:11.584062  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_about_id=2  |  Message: Все основные научные направления лаборатории формулируются вокруг исследования нелинейно-оптических процессов при взаимодействии интенсивного лазерного излучения с веществом. Важно, что в лаборатории мы сами создаём сверхширокополосные (от рентгеновского до терагерцевого диапазона) источники сверхкоротких импульсов с относительно большой энергией, что позволяет при фокусировке такого излучения на объект достигать интенсивностей *выше 10 ТВт/см²*, что достаточно для того, чтобы отклик вещества на такое воздействие становился нелинейным, возникала неравновесная электронная плазма. Дальнейшее увеличение лазерного поля доводит режим воздействия до режима сверхсильного светового поля (напряженность лазерного поля сравнима с напряженностью поля, действующей на электрон на первой боровской орбите в атоме водорода). В этом случае отклик вещества приобретает _«новые краски»_: возникает туннельный эффект по внешнем переменном лазерном поле, генерируются кратные основной частоте воздействующего лазерного поля нечетные гармоники, обеспечивая доступ к генерации когерентного рентгеновского излучения и генерации аттосекундных импульсов. Наличие сверхширокополосного источника излучения позволяет осуществлять воздействие на объекты и исследовать нелинейный отклик в совершенно новом качестве, создавая «режим сильного поля» при мультиспектральном воздействии.
+2024-04-27 14:53:18.916598  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_about_id=2  |  Message: Мы исследуем нелинейные оптические процессы при воздействии интенсивного лазерного излучения на вещество. В лаборатории создаются сверхширокополосные источники сверхкоротких импульсов с высокой энергией (при фокусировке интенсивность *выше 10 ТВт/см²*, что рождает неравновесную электронную плазму). При дальнейшем увеличении поля отклик вещества приобретает _«новые краски»_: возникает туннельный эффект по внешнем переменном лазерном поле, генерируются кратные основной частоте воздействующего лазерного поля нечетные гармоники, обеспечивая доступ к генерации когерентного рентгеновского излучения и генерации аттосекундных импульсов. Наличие таких источников излучения позволяет осуществлять воздействие на объекты и исследовать нелинейный отклик в совершенно новом качестве, создавая _«режим сильного поля»_ при мультиспектральном воздействии
+2024-04-27 14:53:34.973989  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: main_picture
+2024-04-27 15:00:48.567993  |  Nickname: DelNick99  |  Action: admin->edit_science_group->edit_main_picture_id=2  |  Photo: AgACAgIAAxkBAAIFFGYs6O3XXz7iWhjS9nra4vrHI8WlAAL44jEbzPVoSUr-chLlz1NaAQADAgADeQADNAQ
+2024-04-27 15:00:58.057002  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Message: /start
+2024-04-27 15:01:01.347782  |  Nickname: DelNick99  |  Action: admin->edit_science_group->selecting_field_id=2  |  Callback: science_group->start
+2024-04-27 15:01:15.149238  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-27 15:01:58.973938  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->start
+2024-04-27 15:02:37.865710  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-27 15:03:23.072874  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->start
+2024-04-27 15:03:35.376961  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-27 15:04:14.423138  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->start
+2024-04-27 15:04:32.815045  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start
+2024-04-27 15:06:08.960911  |  Nickname: DelNick99  |  Action: science_group->super_strong_lihgt_field->start  |  Callback: science_group->start
+2024-04-27 15:06:14.908614  |  Nickname: DelNick99  |  Action: science_group->page_0  |  Callback: science_group->super_strong_lihgt_field->start

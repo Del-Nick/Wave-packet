@@ -1,20 +1,14 @@
 import asyncio
-import aiogram
 import logging
 from datetime import datetime
 
-from aiogram import Bot, Dispatcher, types, F
-from aiogram.enums.parse_mode import ParseMode
-from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.filters.command import Command
+from aiogram import Dispatcher, types
 
 from config import token, allowed_users
-from Database import User
-from Keyboards import *
 from Callbacks import *
 from Handlers import *
 from Registration import registration_callback, registration_handler
-from AdminPanel import admin_panel
+from Admin.Admin import admin_panel
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
@@ -58,6 +52,13 @@ async def cmd_start(message: types.Message):
     else:
         await start_handler(user, message, bot)
 
+    # Если у предыдущего сообщения бота была клавиатура, удаляем её
+    await bot.edit_message_reply_markup(
+        chat_id=message.from_user.id,
+        message_id=message.message_id - 1,
+        reply_markup=None
+    )
+
 
 # callback на команду start
 # @dp.callback_query(F.data.startswith("start"))
@@ -69,6 +70,7 @@ async def cmd_start(message: types.Message):
 
 @dp.callback_query()
 async def callback_handler(callback: types.CallbackQuery):
+    print(callback.data)
     if callback.message.chat.username in allowed_users:
         user = User(callback.message.chat.id, callback.message.chat.username)
         logger(callback=callback, user=user)

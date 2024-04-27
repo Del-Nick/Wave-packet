@@ -21,11 +21,6 @@ def registration_keyboard(user: User):
         text="Сотрудник кафедры",
         callback_data='registration_employee'))
 
-    if user.admin:
-        keyboard.row(InlineKeyboardButton(
-            text="Удалить меня",
-            callback_data='delete_user'))
-
     return keyboard
 
 
@@ -33,9 +28,6 @@ def delete_keyboard(user: User):
     keyboard = InlineKeyboardBuilder()
     if user.admin:
         keyboard.row(InlineKeyboardButton(
-            text="/start",
-            callback_data='/start'),
-            InlineKeyboardButton(
                 text="Удалить меня",
                 callback_data='delete_user'))
 
@@ -55,14 +47,9 @@ def start_keyboard(user: User):
                 callback_data='about'))
 
             if user.admin:
-                keyboard.row(
-                    InlineKeyboardButton(
-                        text="Удалить меня",
-                        callback_data='delete_user'),
-                    InlineKeyboardButton(
+                keyboard.row(InlineKeyboardButton(
                         text="Админ панель",
-                        callback_data='admin->start')
-                )
+                        callback_data='admin->start'))
 
             return keyboard
         case _:
@@ -81,7 +68,6 @@ def science_group_keyboard(user: User, labs: list, total_page: int):
         keyboard.row(InlineKeyboardButton(
             text=group_name,
             callback_data=f"science_group->{collback_name}->start"))
-        print(len(f"science_group->{collback_name}->start"), f"science_group->{collback_name}->start")
 
     back_button = InlineKeyboardButton(
         text="Меню",
@@ -100,36 +86,34 @@ def science_group_keyboard(user: User, labs: list, total_page: int):
     else:
         keyboard.row(back_button)
 
-    if user.admin:
-        keyboard.row(InlineKeyboardButton(
-            text="Удалить меня",
-            callback_data='delete_user'))
-
     return keyboard
 
 
 def areas_courseworks_contacts_keyboard(user: User, lab: Lab):
     keyboard = InlineKeyboardBuilder()
 
-    keyboard.row(InlineKeyboardButton(
-        text="Научные направления",
-        callback_data=user.action.replace('start', 'areas->page_0')))
+    _ = f'science_group->{lab.callback_name}'
 
-    keyboard.row(InlineKeyboardButton(
-        text="Курсовые работы",
-        callback_data=user.action.replace('start', 'courseworks_->page_0')),
-        InlineKeyboardButton(
-            text="Контакты",
-            callback_data=user.action.replace('start', 'contacts')))
+    if lab.areas:
+        keyboard.row(InlineKeyboardButton(text="Научные направления",
+                                          callback_data=_ + '->areas->page_0'))
+
+    if lab.courseworks and lab.contacts:
+        keyboard.row(InlineKeyboardButton(text="Курсовые работы",
+                                          callback_data=_ + '->courseworks->page_0'),
+                     InlineKeyboardButton(text="Контакты",
+                                          callback_data=_ + '->contacts')
+                                          )
+    elif lab.courseworks:
+        keyboard.row(InlineKeyboardButton(text="Курсовые работы",
+                                          callback_data=_ + '->courseworks->page_0'))
+    elif lab.contacts:
+        keyboard.row(InlineKeyboardButton(text="Контакты",
+                                          callback_data=_ + '->contacts'))
 
     keyboard.row(InlineKeyboardButton(
         text="Назад",
         callback_data="science_group->start"))
-
-    if user.admin:
-        keyboard.row(InlineKeyboardButton(
-            text="Удалить меня",
-            callback_data='delete_user'))
 
     return keyboard
 
@@ -170,11 +154,6 @@ def slider_keyboard(user: User,
     else:
         keyboard.row(back_button)
 
-    if user.admin:
-        keyboard.row(InlineKeyboardButton(
-            text="Удалить меня",
-            callback_data='delete_user'))
-
     return keyboard
 
 
@@ -185,11 +164,11 @@ def back_keyboard(user: User, button: str = None):
     """
     keyboard = InlineKeyboardBuilder()
 
-    _ = user.action.split("->")[0]
-    if 'science_group' in _ or 'about' in _:
-        user.action = 'start'
+    _ = user.action.split("->")
+    if 'page' in user.action:
+        action = '->'.join(_[:-2]) + '->start'
     else:
-        user.action = f'{_}->start'
+        action = '->'.join(_[:-1]) + '->start'
 
     if button is not None:
         button = InlineKeyboardButton(
@@ -198,18 +177,13 @@ def back_keyboard(user: User, button: str = None):
 
         keyboard.row(InlineKeyboardButton(
             text="Назад",
-            callback_data=user.action),
+            callback_data=action),
             button)
 
     else:
         keyboard.row(InlineKeyboardButton(
             text="Назад",
-            callback_data=user.action))
-
-    if user.admin:
-        keyboard.row(InlineKeyboardButton(
-            text="Удалить меня",
-            callback_data='delete_user'))
+            callback_data=action))
 
     return keyboard
 
@@ -222,11 +196,11 @@ def back_keyboard_without_callback(user: User, button: str = None):
 
     keyboard = InlineKeyboardBuilder()
 
-    _ = user.action.split("->")[0]
-    if 'science_group' in _ or 'about' in _:
-        _ = 'start'
+    _ = user.action.split("->")
+    if 'page' in user.action:
+        action = '->'.join(_[:-2]) + '->start'
     else:
-        _ += '->back'
+        action = '->'.join(_[:-1]) + '->start'
 
     if button is not None:
         button = InlineKeyboardButton(
@@ -235,76 +209,12 @@ def back_keyboard_without_callback(user: User, button: str = None):
 
         keyboard.row(InlineKeyboardButton(
             text="Назад",
-            callback_data=_),
+            callback_data=action),
             button)
 
     else:
         keyboard.row(InlineKeyboardButton(
             text="Назад",
-            callback_data=_))
-
-    if user.admin:
-        keyboard.row(InlineKeyboardButton(
-            text="Удалить меня",
-            callback_data='delete_user'))
-
-    return keyboard
-
-
-def admin_keyboard(user: User):
-    keyboard = InlineKeyboardBuilder()
-
-    keyboard.row(
-        InlineKeyboardButton(
-            text="Добавить группу",
-            callback_data=f'admin->add_science_group->start'),
-        InlineKeyboardButton(
-            text="Удалить группу",
-            callback_data='admin->delete_science_group->start'))
-
-    keyboard.row(
-        InlineKeyboardButton(
-            text="Редактировать группу",
-            callback_data=f'admin->edit_science_group->start'))
-
-    keyboard.row(
-        InlineKeyboardButton(
-            text="Просто крутая кнопка",
-            callback_data=f'admin->joke'))
-
-    keyboard.row(
-        InlineKeyboardButton(
-            text="В главное меню",
-            callback_data='start'))
-
-    keyboard.row(InlineKeyboardButton(
-        text="Удалить меня",
-        callback_data='delete_user'))
-
-    return keyboard
-
-
-def fields_to_edit():
-    keyboard = InlineKeyboardBuilder()
-
-    keyboard.row(
-        InlineKeyboardButton(text="Полное название", callback_data='full_name'),
-        InlineKeyboardButton(text="Краткое название", callback_data='short_name'))
-
-    keyboard.row(
-        InlineKeyboardButton(text="Callback", callback_data='callback_name'),
-        InlineKeyboardButton(text="Описание", callback_data='about'))
-
-    keyboard.row(
-        InlineKeyboardButton(text="Основная картинка", callback_data='main_picture'),
-        InlineKeyboardButton(text="Научные направления", callback_data='areas'))
-
-    keyboard.row(
-        InlineKeyboardButton(text="Контакты", callback_data='contacts'),
-        InlineKeyboardButton(text="Курсовые работы", callback_data='courseworks'))
-
-    keyboard.row(
-        InlineKeyboardButton(text="⚠Удалить группу⚠", callback_data='delete_science_group'),
-        InlineKeyboardButton(text="Назад", callback_data='admin->back'))
+            callback_data=action))
 
     return keyboard

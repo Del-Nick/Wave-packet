@@ -3,3 +3,7 @@ numpy==1.26.4
 paramiko==3.4.0
 PyMySQL==1.1.0
 sshtunnel==0.4.0
+
+requests~=2.31.0
+transliterate~=1.10.2
+pymorphy3~=2.0.1
