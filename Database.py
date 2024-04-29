@@ -1,6 +1,8 @@
+import datetime
 import json
 import time
 import traceback
+from aiogram.types import CallbackQuery, Message
 
 import pymysql
 from sshtunnel import SSHTunnelForwarder
@@ -97,7 +99,7 @@ class User:
 
 class Lab:
 
-    def __init__(self, id: int = None, full_name: str = None, callback_name: str = None):
+    def __init__(self, user: User, id: int = None, full_name: str = None, callback_name: str = None):
         self.id = id
         self.full_name = full_name
         self.short_name = None
@@ -108,8 +110,7 @@ class Lab:
         self.contacts = None
         self.courseworks = None
 
-        # self.conn = user.conn
-        self.conn = connection()
+        self.conn = user.conn
         self.collect_data()
 
     def collect_data(self):
@@ -224,9 +225,9 @@ class Lab:
 
 
 class AllLabs:
-    def __init__(self, user: User = None):
+    def __init__(self, user: User):
         self.labs = None
-        self.conn = connection()
+        self.conn = user.conn
         self.get_all_group_names()
 
     def get_all_group_names(self):
@@ -236,3 +237,39 @@ class AllLabs:
                 self.labs = cursor.fetchall()
         except:
             traceback.print_exc()
+
+
+class HistoryMessages:
+    def __init__(self, user: User, callback: CallbackQuery = None, message: Message = None):
+        self.date = datetime.datetime.now()
+        self.nickname = user.username
+        self.name = user.nickname
+        self.action = user.action
+        self.message_callback = self.get_text_callback_action_or_pictures(callback, message)
+
+        self.conn = user.conn
+        self.update()
+
+    @staticmethod
+    def get_text_callback_action_or_pictures(callback: CallbackQuery = None, message: Message = None):
+        if message:
+            if message.photo is not None:
+                return f'{message.photo[-1].file_id}\n{message.caption}'
+            elif message.document is not None:
+                return f'{message.document.file_id}\n{message.caption}'
+            else:
+                return message.text
+
+        else:
+            return callback.data
+
+    def update(self):
+        with self.conn.cursor() as cursor:
+            cursor.execute('INSERT INTO HistoryMessages (datetime, nickname, name, user_action, '
+                           'message_callback) VALUES (%s, %s, %s, %s, %s)',
+                           (self.date,
+                            self.nickname,
+                            self.name,
+                            self.action,
+                            self.message_callback))
+            self.conn.commit()

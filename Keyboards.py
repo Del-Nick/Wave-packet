@@ -145,11 +145,11 @@ def slider_keyboard(user: User,
         keyboard.row(
             InlineKeyboardButton(
                 text="◀",
-                callback_data=f'{lab.callback_name}->{type_keyboard}->page_{page}-'),
+                callback_data=f'science_group->{lab.callback_name}->{type_keyboard}->page_{page}-'),
             back_button,
             InlineKeyboardButton(
                 text="▶",
-                callback_data=f'{lab.callback_name}->{type_keyboard}->page_{page}+'))
+                callback_data=f'science_group->{lab.callback_name}->{type_keyboard}->page_{page}+'))
 
     else:
         keyboard.row(back_button)

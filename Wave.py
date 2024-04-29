@@ -9,6 +9,7 @@ from Callbacks import *
 from Handlers import *
 from Registration import registration_callback, registration_handler
 from Admin.Admin import admin_panel
+from Database import User, HistoryMessages
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
@@ -19,6 +20,7 @@ dp = Dispatcher()
 
 
 def logger(user: User, message: types.Message = None, callback: types.CallbackQuery = None):
+    HistoryMessages(user, callback, message)
     if message is not None:
         _ = f'{datetime.now()}  |  Nickname: {message.chat.username}  |  Action: {user.action}  |  '
         if message.photo is not None:
@@ -51,6 +53,8 @@ async def cmd_start(message: types.Message):
 
     else:
         await start_handler(user, message, bot)
+
+    user.update()
 
     # Если у предыдущего сообщения бота была клавиатура, удаляем её
     await bot.edit_message_reply_markup(
@@ -108,6 +112,7 @@ async def handler(message: types.Message):
                 await registration_handler(user, message, bot)
 
             case 'start':
+                print('\n', message.md_text, '\n')
                 await start_handler(user=user, bot=bot, message=message)
 
             case 'admin':

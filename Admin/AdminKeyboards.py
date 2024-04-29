@@ -15,13 +15,14 @@ def admin_keyboard(user: User):
             text="Добавить группу",
             callback_data=f'admin->add_science_group->start'),
         InlineKeyboardButton(
-            text="Удалить группу",
-            callback_data='admin->delete_science_group->start'))
+            text="Изменить группу",
+            callback_data=f'admin->edit_science_group->start'))
 
     keyboard.row(
         InlineKeyboardButton(
-            text="Редактировать группу",
-            callback_data=f'admin->edit_science_group->start'))
+            text="Как оформлять текст?",
+            callback_data=f'admin->about_text_editing')
+    )
 
     keyboard.row(
         InlineKeyboardButton(
@@ -40,66 +41,56 @@ def admin_keyboard(user: User):
     return keyboard
 
 
-def back_keyboard(user: User, callback: bool = True, button: str = None):
+def back_keyboard(user: User, callback: bool = True, button: str | list = None, field: str = ''):
     """
     Клавиатура только с кнопкой назад. Меняет последнее слово в user.action на start
     :return: Объект клавиатуры
     """
-    if callback:
-        keyboard = InlineKeyboardBuilder()
 
-        if button is not None:
+    keyboard = InlineKeyboardBuilder()
+
+    if button is not None:
+        if type(button) is list:
+            keyboard.row(InlineKeyboardButton(
+                text=button[0],
+                callback_data=button[0]),
+                InlineKeyboardButton(
+                    text=button[1],
+                    callback_data=button[1]))
+
+            keyboard.row(InlineKeyboardButton(
+                text="Назад",
+                callback_data='back'))
+
+        else:
             button = InlineKeyboardButton(
                 text=button,
-                callback_data=button)
+                callback_data=f'{field}{button}')
 
             keyboard.row(InlineKeyboardButton(
                 text="Назад",
                 callback_data='back'),
                 button)
-
-        else:
-            keyboard.row(InlineKeyboardButton(
-                text="Назад",
-                callback_data='back'))
-
-        if user.admin:
-            keyboard.row(InlineKeyboardButton(
-                text="Удалить меня",
-                callback_data='delete_user'))
 
     else:
-        keyboard = InlineKeyboardBuilder()
+        keyboard.row(InlineKeyboardButton(
+            text="Назад",
+            callback_data='back'))
 
-        if button is not None:
-            button = InlineKeyboardButton(
-                text=button,
-                callback_data=button)
-
-            keyboard.row(InlineKeyboardButton(
-                text="Назад",
-                callback_data='back'),
-                button)
-
-        else:
-            keyboard.row(InlineKeyboardButton(
-                text="Назад",
-                callback_data='back'))
-
-        if user.admin:
-            keyboard.row(InlineKeyboardButton(
-                text="Удалить меня",
-                callback_data='delete_user'))
+    if user.admin:
+        keyboard.row(InlineKeyboardButton(
+            text="Удалить меня",
+            callback_data='delete_user'))
 
     return keyboard
 
 
-def custom_keyboard(user: User, buttons: list | range, special_button: str = None):
+def custom_keyboard(user: User, buttons: list | range, field: str = '', special_button: str = None):
     keyboard = InlineKeyboardBuilder()
 
     for i, button in enumerate(buttons):
         keyboard.button(text=str(button),
-                        callback_data=str(button))
+                        callback_data=f'{field}{button}')
 
     if special_button:
         keyboard.row(InlineKeyboardButton(
@@ -107,7 +98,7 @@ def custom_keyboard(user: User, buttons: list | range, special_button: str = Non
             callback_data='back'),
             InlineKeyboardButton(
                 text=special_button,
-                callback_data=special_button))
+                callback_data=f'{field}{special_button}'))
     else:
         keyboard.row(InlineKeyboardButton(
             text="Назад",
@@ -129,7 +120,7 @@ def fields_to_edit():
         InlineKeyboardButton(text="Краткое название", callback_data='short_name'))
 
     keyboard.row(
-        InlineKeyboardButton(text="Callback", callback_data='callback_name'),
+        InlineKeyboardButton(text="Контакты", callback_data='contacts'),
         InlineKeyboardButton(text="Описание", callback_data='lab_about'))
 
     keyboard.row(
@@ -137,11 +128,9 @@ def fields_to_edit():
         InlineKeyboardButton(text="Научные направления", callback_data='areas'))
 
     keyboard.row(
-        InlineKeyboardButton(text="Контакты", callback_data='contacts'),
+        InlineKeyboardButton(text="⚠Удалить группу⚠", callback_data='delete_science_group'),
         InlineKeyboardButton(text="Курсовые работы", callback_data='courseworks'))
 
-    keyboard.row(
-        InlineKeyboardButton(text="⚠Удалить группу⚠", callback_data='delete_science_group'),
-        InlineKeyboardButton(text="Назад", callback_data='back'))
+    keyboard.row(InlineKeyboardButton(text="Назад", callback_data='back'))
 
     return keyboard

@@ -4,6 +4,7 @@ from pprint import pprint
 from aiogram.types import CallbackQuery, InputMediaPhoto, Message, ReplyKeyboardRemove
 from aiogram.enums import ParseMode
 from aiogram import Bot
+from aiogram.utils.text_decorations import markdown_decoration
 
 from numpy.random import randint
 from dataclasses import dataclass
@@ -88,6 +89,9 @@ async def admin_panel(user: User, bot: Bot, callback: CallbackQuery = None, mess
 
             elif 'delete_science_group' in user.action:
                 await delete_science_group(user, callback=callback, bot=bot)
+
+            elif 'about_text_editing' in callback.data:
+                await rules_of_text_formatting(user, callback, bot)
 
             else:
                 await callback.message.edit_media(InputMediaPhoto(media=error_pictures,
@@ -222,19 +226,26 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                                    text='Описание добавил\. Перейдём к научным направлениям\. Отправляй мне информацию '
                                         'по следующему образцу:\n\n'
                                         ''
-                                        '*Название:* \n\n\n'
+                                        'Название: \n\n\n'
                                         ''
-                                        '*Описание:* \n\n\n'
+                                        'Описание: \n\n\n'
                                         ''
-                                        '*Контакты:* \(потенциального научного руководителя\)\n\n\n'
-                                        '*Подробнее:* только одна ссылка на более подробное описание без '
+                                        'Учёный: \(должность и фио потенциального научного руководителя\)\n\n\n'
+                                        ''
+                                        'Кабинет:\n\n\n'
+                                        ''
+                                        'Электронная почта:\n\n\n'
+                                        ''
+                                        'Подробнее: только одна ссылка на более подробное описание без '
                                         'дополнительного текста \(по желанию\)\n\n'
                                         ''
                                         'Важно\! Не забудь прикрепить картинку к сообщению, оставить слова\n'
-                                        '"*Название:* "\n'
-                                        '"*Описание:* "\n'
-                                        '"*Контакты:* "\n'
-                                        '"*Подробнее:* "\n\n'
+                                        '*"Название:"* \n'
+                                        '*"Описание:"* \n'
+                                        '*"Учёный:"* \n'
+                                        '*"Кабинет:"*\n'
+                                        '*"Электронная почта:"*\n'
+                                        '*"Подробнее:"* \n\n'
                                         'По ним я пойму, если чего\-то не хватает\. Между пунктами оставляй *__две '
                                         'пустые строки__*, а между своими абзацами *__одну__*\.'
                                         '\n\n'
@@ -255,7 +266,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
 
     elif 'add_areas' in user.action:
         if callback:
-            lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+            lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
             if callback.data == 'Далее':
                 await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
@@ -281,9 +292,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
             if result.success:
                 await bot.send_message(chat_id=user.id,
                                        text=f'Записал\. Теперь прикрепи фотографии *__по одной__*, сопровождая их '
-                                            f'описанием',
-                                       reply_markup=back_keyboard(user, False,
-                                                                  button='Следующее направление').as_markup(),
+                                            f'описанием\. Прикреплять картинки __обязательно__',
                                        parse_mode='MarkdownV2')
                 user.action = f'admin->add_science_group->add_picture_to_area_id={lab.id}'
 
@@ -303,15 +312,31 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                                        reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
                                        parse_mode='Markdown')
 
-            elif result.error == 'no contacts':
+            elif result.error == 'no scientist':
                 await bot.send_message(chat_id=user.id,
-                                       text='Не могу понять, где контакты. Не забывай оставлять кодовое слово перед '
-                                            'контактами:\n\n'
-                                            '*Контакты:*',
+                                       text='Не указаны должность и фио учёного. Не забывай оставлять кодовое слово '
+                                            'перед контактами:\n\n'
+                                            '*Учёный:*',
                                        reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
                                        parse_mode='Markdown')
 
-            elif result.error == 'no indents':
+            elif result.error == 'no cabinet':
+                await bot.send_message(chat_id=user.id,
+                                       text='Кажется, не указан кабиинет. Не забывай оставлять кодовое слово перед '
+                                            'ним:\n\n'
+                                            '*Кабинет:*',
+                                       reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
+                                       parse_mode='Markdown')
+
+            elif result.error == 'no email':
+                await bot.send_message(chat_id=user.id,
+                                       text='Кажется, не указан адрес электронной почты. Не забывай оставлять кодовое '
+                                            'слово перед ним:\n\n'
+                                            '*Электронная почта:*',
+                                       reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
+                                       parse_mode='Markdown')
+
+            elif result.error == 'no indents' or result.error == 'too long indents':
                 await bot.send_message(chat_id=user.id,
                                        text='Для меня очень важно, чтобы между пунктами было *__2 пустые__* строки\. '
                                             'Исправь, пожалуйста',
@@ -322,10 +347,10 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
                 await database_error_message(user, bot)
 
     elif 'add_picture_to_area' in user.action:
-        lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+        lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
         if callback:
-            lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+            lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
             if 'Следующее направление' in callback.data:
                 await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
@@ -384,7 +409,7 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
         success = False
 
         if callback:
-            lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+            lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
             if 'Далее' in callback.data:
                 await bot.send_message(chat_id=user.id,
@@ -498,16 +523,9 @@ async def add_science_group(user: User, bot: Bot, message: Message = None, callb
 
 async def edit_field(user: User, bot: Bot, message: Message = None, callback: CallbackQuery = None):
     if message:
-
-        await bot.edit_message_reply_markup(
-            chat_id=message.from_user.id,
-            message_id=message.message_id - 1,
-            reply_markup=None
-        )
-
         if 'get_id' in user.action:
             try:
-                labs = AllLabs()
+                labs = AllLabs(user)
                 group_id = int(message.text) - 1
 
                 list_labs = ''
@@ -520,7 +538,7 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
                                                 'ещё раз',
                                            reply_markup=back_keyboard(user, False).as_markup())
                 else:
-                    lab = Lab(id=group_id)
+                    lab = Lab(user=user, id=group_id)
                     await bot.send_message(chat_id=user.id,
                                            text=f'Выбрано: *{lab.full_name}*.\n\n'
                                                 f'Теперь нужно решить, какое поле будем менять',
@@ -570,32 +588,9 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
 
             elif result.error == 'too long':
                 await bot.send_message(chat_id=user.id,
-                                       text=f'В названии количество символов равно {len(message.text)}, а нужно не больше '
-                                            f'64. Сократи, пожалуйста, название',
+                                       text=f'В названии количество символов равно {len(message.text)}, а нужно не '
+                                            f'больше 64. Сократи, пожалуйста, название',
                                        reply_markup=back_keyboard(user, False).as_markup())
-            else:
-                await database_error_message(user, bot)
-
-        elif 'edit_callback_name' in user.action:
-            result, lab = edit_callback_name(user, message)
-
-            if result.success:
-                await bot.send_message(chat_id=user.id,
-                                       text='Записал новое callback имя',
-                                       reply_markup=fields_to_edit().as_markup())
-                user.action = f'admin->edit_science_group->selecting_field_id={lab.id}'
-
-            elif result.error == 'too long':
-                await bot.send_message(chat_id=user.id,
-                                       text=f'В названии количество символов равно {len(message.text)}, а нужно не больше '
-                                            f'40. Сократи, пожалуйста, название',
-                                       reply_markup=back_keyboard(user, False).as_markup())
-
-            elif result.error == 'callback already exist':
-                await bot.send_message(chat_id=user.id,
-                                       text='Такое callback имя уже существует. Выбери другое',
-                                       reply_markup=back_keyboard(user, False).as_markup())
-
             else:
                 await database_error_message(user, bot)
 
@@ -635,7 +630,7 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
             elif result.error == 'too long':
                 await bot.send_message(chat_id=user.id,
                                        text=f'Описание получилось слишком длинным. Количество символов '
-                                            f'{len(message.text)}, а должно быть меньше 1024. Сократи описание',
+                                            f'{len(message.text)}, а должно быть меньше 950. Сократи описание',
                                        reply_markup=back_keyboard(user, False).as_markup())
 
             else:
@@ -647,10 +642,9 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
             if result.success:
                 await bot.send_message(chat_id=user.id,
                                        text=f'Записал\. Теперь прикрепи фотографии *__по одной__*, сопровождая их '
-                                            f'описанием',
-                                       reply_markup=back_keyboard(user, False).as_markup(),
+                                            f'описанием\. Прикреплять картинку обязательно',
                                        parse_mode='MarkdownV2')
-                user.action = f'admin->edit_science_group->edit_picture_to_area_id={lab.id}'
+                user.action = user.action.replace('edit_areas', 'edit_picture_to_area')
 
             elif result.error == 'no title':
                 await bot.send_message(chat_id=user.id,
@@ -668,15 +662,31 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
                                        reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
                                        parse_mode='Markdown')
 
-            elif result.error == 'no contacts':
+            elif result.error == 'no scientist':
                 await bot.send_message(chat_id=user.id,
-                                       text='Не могу понять, где контакты. Не забывай оставлять кодовое слово перед '
-                                            'контактами:\n\n'
-                                            '*Контакты:*',
+                                       text='Не могу понять, где должность и фио учёного. Не забывай оставлять '
+                                            'ключевое слово перед ним:\n\n'
+                                            '*Учёный:*',
                                        reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
                                        parse_mode='Markdown')
 
-            elif result.error == 'no indents':
+            elif result.error == 'no cabinet':
+                await bot.send_message(chat_id=user.id,
+                                       text='Не могу понять, где кабинет. Не забывай оставлять '
+                                            'ключевое слово перед ним:\n\n'
+                                            '*Кабинет:*',
+                                       reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
+                                       parse_mode='Markdown')
+
+            elif result.error == 'no email':
+                await bot.send_message(chat_id=user.id,
+                                       text='Не могу найти адрес электронной почты. Не забывай оставлять '
+                                            'ключевое слово перед ним:\n\n'
+                                            '*Электронная почта:*',
+                                       reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
+                                       parse_mode='Markdown')
+
+            elif result.error == 'no indents' or result.error == 'too long indents':
                 await bot.send_message(chat_id=user.id,
                                        text='Для меня очень важно, чтобы между пунктами было *__2 пустые__* строки\. '
                                             'Исправь, пожалуйста',
@@ -692,11 +702,12 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
             if result.success:
                 await bot.send_message(chat_id=user.id,
                                        text='Записал. Можешь отправить ещё картинки или вернуться в главное меню',
-                                       reply_markup=back_keyboard(user, False, button='Готово'))
+                                       reply_markup=back_keyboard(user, False, button='Готово').as_markup())
 
             elif result.error == 'document is given':
                 await bot.send_message(chat_id=user.id,
-                                       text='Прикрепляй изображение *__как картинку__* (со сжатием), а не как документ',
+                                       text='Прикрепляй изображение *__как картинку__* \(со сжатием\), а не как '
+                                            'документ',
                                        reply_markup=back_keyboard(user, False).as_markup(),
                                        parse_mode="MarkdownV2")
 
@@ -751,9 +762,16 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
             else:
                 await database_error_message(user, bot)
 
+        await bot.edit_message_reply_markup(
+            chat_id=message.from_user.id,
+            message_id=message.message_id - 1,
+            reply_markup=None
+        )
+
     if callback:
+        print('Я тут', 'areas' in user.action, )
         if 'start' in user.action:
-            labs = AllLabs()
+            labs = AllLabs(user)
             if len(labs.labs) == 0:
                 if user.nickname == 'Nikatkavr':
                     await callback.message.edit_media(
@@ -781,7 +799,7 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
 
         elif 'get_id' in user.action:
             try:
-                labs = AllLabs()
+                labs = AllLabs(user)
                 group_id = int(callback.data)
 
                 if group_id > len(labs.labs) or group_id < 1:
@@ -791,7 +809,7 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
                                            reply_markup=custom_keyboard(user, buttons=range(1,
                                                                                             len(labs.labs) + 1)).as_markup())
                 else:
-                    lab = Lab(id=group_id)
+                    lab = Lab(user=user, id=group_id)
                     await bot.edit_message_text(text=f'Выбрано: *{lab.full_name}*.\n\n'
                                                      f'Теперь нужно решить, какое поле будем менять',
                                                 chat_id=user.id,
@@ -818,7 +836,7 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
 
         elif 'short_name' in callback.data:
             group_id = int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', ''))
-            lab = Lab(id=group_id)
+            lab = Lab(user=user, id=group_id)
             await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
             await bot.send_message(chat_id=user.id,
                                    text=f'Редактируем научную группу: *{lab.short_name}*.\n\n'
@@ -829,20 +847,6 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
                                    parse_mode='Markdown')
 
             user.action = f'admin->edit_science_group->edit_short_name_id={group_id}'
-
-        elif 'callback_name' in callback.data:
-            group_id = int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', ''))
-            await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
-            await bot.send_message(chat_id=user.id,
-                                   text=f'Напиши callback-название, которое будет использоваться для '
-                                        f'внутренней работы бота на английском языке по следующему образцу:\n\n'
-                                        f'this_is_just_an_example\n\n'
-                                        f'Название не должно превышать 40 символов и должно быть напрямую связано с '
-                                        f'названием научное группы',
-                                   reply_markup=back_keyboard(user, False).as_markup(),
-                                   parse_mode='Markdown')
-
-            user.action = f'admin->edit_science_group->edit_callback_name_id={group_id}'
 
         elif 'lab_about' in callback.data:
             group_id = int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', ''))
@@ -869,55 +873,116 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
 
         elif 'areas' in callback.data:
             group_id = int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', ''))
-            lab = Lab(id=group_id)
+            lab = Lab(user=user, id=group_id)
 
-            if 'get_area_num' in user.action:
+            if 'Удалить' in callback.data:
+                area_id = int(re.search(r'area_num=\d{1,2}', user.action).group().replace('area_num=', ''))
+                lab.areas.pop(area_id - 1)
+                lab.update()
+                user.action = f'admin->edit_science_group->selecting_field_id={group_id}'
+                await bot.delete_message(chat_id=callback.from_user.id,
+                                         message_id=callback.message.message_id - 1)
+                await bot.edit_message_text(chat_id=user.id,
+                                            message_id=callback.message.message_id,
+                                            text=f'Начуное направление удалено.\n\n'
+                                                 f'Выбрано: *{lab.full_name}*.\n\n'
+                                                 f'Теперь нужно решить, какое поле будем менять',
+                                            reply_markup=fields_to_edit().as_markup(),
+                                            parse_mode='Markdown')
+
+            elif 'get_area_num' in user.action:
+                for i in range(len(lab.areas)):
+                    await bot.delete_message(chat_id=callback.from_user.id,
+                                             message_id=callback.message.message_id - 1 - i)
                 if 'Добавить' in callback.data:
-                    user.action = f'admin->edit_science_group->edit_areas_id={group_id}_area_num={len(lab.areas)}'
-                else:
-                    area_id = int(callback.data)
-                    user.action = f'admin->edit_science_group->edit_areas_id={group_id}_area_num={area_id}'
+                    user.action = f'admin->edit_science_group->edit_areas_id={group_id}_area_num={len(lab.areas) + 1}'
 
                     await bot.edit_message_text(
                         text='Отправляй мне информацию по следующему образцу:\n\n'
                              ''
-                             '*Название:* \n\n\n'
+                             'Название: \n\n\n'
                              ''
-                             '*Описание:* \n\n\n'
+                             'Описание: \n\n\n'
                              ''
-                             '*Контакты:* \(потенциального научного руководителя\)\n\n\n'
-                             '*Подробнее:* только одна ссылка на более подробное описание без '
+                             'Учёный: \(должность и фио потенциального научного руководителя\)\n\n\n'
+                             ''
+                             'Кабинет:\n\n\n'
+                             ''
+                             'Электронная почта:\n\n\n'
+                             ''
+                             'Подробнее: только одна ссылка на более подробное описание без '
                              'дополнительного текста \(по желанию\)\n\n'
                              ''
                              'Важно\! Не забудь прикрепить картинку к сообщению, оставить слова\n'
-                             '"*Название:* "\n'
-                             '"*Описание:* "\n'
-                             '"*Контакты:* "\n'
-                             '"*Подробнее:* "\n\n'
+                             '*"Название:"* \n'
+                             '*"Описание:"* \n'
+                             '*"Учёный:"* \n'
+                             '*"Кабинет:"*\n'
+                             '*"Электронная почта:"*\n'
+                             '*"Подробнее:"* \n\n'
                              'По ним я пойму, если чего\-то не хватает\. Между пунктами оставляй *__две '
                              'пустые строки__*, а между своими абзацами *__одну__*\.'
                              '\n\n'
                              'Если считаешь, что все направления указаны, то жми на кнопку "Далее"',
                         chat_id=callback.from_user.id,
                         message_id=callback.message.message_id,
-                        reply_markup=back_keyboard(user, False, button='Далее').as_markup(),
+                        reply_markup=back_keyboard(user, False, button='Удалить', field='areas_').as_markup(),
+                        parse_mode="MarkdownV2")
+
+                else:
+                    area_id = int(callback.data.replace('areas_', ''))
+                    user.action = f'admin->edit_science_group->edit_areas_id={group_id}_area_num={area_id}'
+
+                    await bot.edit_message_text(
+                        text=lab.areas[area_id - 1]['about'],
+                        chat_id=callback.from_user.id,
+                        message_id=callback.message.message_id,
+                        parse_mode="MarkdownV2")
+
+                    await bot.send_message(
+                        text='Отправляй мне информацию по следующему образцу:\n\n'
+                             ''
+                             'Название: \n\n\n'
+                             ''
+                             'Описание: \n\n\n'
+                             ''
+                             'Учёный: \(должность и фио потенциального научного руководителя\)\n\n\n'
+                             ''
+                             'Кабинет:\n\n\n'
+                             ''
+                             'Электронная почта:\n\n\n'
+                             ''
+                             'Подробнее: только одна ссылка на более подробное описание без '
+                             'дополнительного текста \(по желанию\)\n\n'
+                             ''
+                             'Важно\! Не забудь прикрепить картинку к сообщению, оставить слова\n'
+                             '*"Название:"* \n'
+                             '*"Описание:"* \n'
+                             '*"Учёный:"* \n'
+                             '*"Кабинет:"*\n'
+                             '*"Электронная почта:"*\n'
+                             '*"Подробнее:"* \n\n'
+                             'По ним я пойму, если чего\-то не хватает\. Между пунктами оставляй *__две '
+                             'пустые строки__*, а между своими абзацами *__одну__*\.'
+                             '\n\n'
+                             'Если считаешь, что все направления указаны, то жми на кнопку "Далее"',
+                        chat_id=callback.from_user.id,
+                        reply_markup=back_keyboard(user, False, button='Удалить', field='areas_').as_markup(),
                         parse_mode="MarkdownV2")
 
             else:
-                for i, _ in enumerate(lab.areas):
-                    pictures = []
-                    for pic in _['pictures']:
-                        pictures.append(InputMediaPhoto(media=pic['picture'],
-                                                        caption=pic['desc']))
-                    await bot.send_media_group(chat_id=user.id,
-                                               media=pictures)
+                await bot.delete_message(chat_id=callback.from_user.id,
+                                         message_id=callback.message.message_id)
+                for i, area in enumerate(lab.areas):
                     await bot.send_message(chat_id=user.id,
-                                           text=f"{i + 1}. {_['about']}",
-                                           reply_markup=fields_to_edit().as_markup())
+                                           text=f"{i + 1}\. {area['about'][:300]}\.\.\.",
+                                           parse_mode='MarkdownV2')
 
                 await bot.send_message(chat_id=user.id,
                                        text=f"Выбери номер направления, которое будем редактировать",
-                                       reply_markup=custom_keyboard(user, buttons=range(1, len(lab.areas) + 1),
+                                       reply_markup=custom_keyboard(user,
+                                                                    buttons=range(1, len(lab.areas) + 1),
+                                                                    field='areas_',
                                                                     special_button='Добавить').as_markup())
                 user.action = f'admin->edit_science_group->edit_areas_id={group_id}_get_area_num'
 
@@ -945,7 +1010,7 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
             group_id = int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', ''))
             await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
 
-            lab = Lab(id=group_id)
+            lab = Lab(user=user, id=group_id)
             for i, coursework in enumerate(lab.courseworks):
                 await bot.send_message(chat_id=user.id,
                                        text=f'{i + 1}.\n'
@@ -961,11 +1026,18 @@ async def edit_field(user: User, bot: Bot, message: Message = None, callback: Ca
 
         elif 'Готово' in callback.data:
             group_id = int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', ''))
-            lab = Lab(id=group_id)
+            lab = Lab(user=user, id=group_id)
             await bot.send_message(chat_id=user.id,
                                    text='Возвращаюсь в главное меню',
                                    reply_markup=fields_to_edit().as_markup())
             user.action = f'admin->edit_science_group->selecting_field_id={lab.id}'
+
+            # Если у предыдущего сообщения бота была клавиатура, удаляем её
+            await bot.edit_message_reply_markup(
+                chat_id=callback.from_user.id,
+                message_id=callback.message.message_id,
+                reply_markup=None
+            )
 
 
 @dataclass
@@ -978,8 +1050,8 @@ def edit_full_name(user: User, message: Message = None) -> tuple[EditingResult, 
     labs = AllLabs(user)
     # Если редактируют существующую группу, то проверяем, если в действии пользователя указание на это
     if re.search(r'id=\d{1,2}', user.action):
-        lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
-        lab.full_name = message.text
+        lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+        lab.full_name = message
 
         if lab.update():
             return EditingResult(success=True), lab
@@ -987,10 +1059,10 @@ def edit_full_name(user: User, message: Message = None) -> tuple[EditingResult, 
             return EditingResult(success=False, error='database error'), lab
 
     else:
-        lab = Lab(full_name=message.text)
+        lab = Lab(user=user, full_name=message.text)
 
         if len(labs.labs) == 0:
-            if lab.add_new_lab():
+            if lab.add_new_Lab(user=user, ):
                 return EditingResult(success=True), lab
 
             else:
@@ -1000,7 +1072,7 @@ def edit_full_name(user: User, message: Message = None) -> tuple[EditingResult, 
             return EditingResult(success=False, error='group already exist'), lab
 
         else:
-            if lab.add_new_lab():
+            if lab.add_new_Lab(user=user, ):
                 return EditingResult(success=True), lab
 
             else:
@@ -1008,8 +1080,8 @@ def edit_full_name(user: User, message: Message = None) -> tuple[EditingResult, 
 
 
 def edit_short_name(user: User, message: Message = None) -> tuple[EditingResult, Lab]:
-    lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
-    labs = AllLabs()
+    lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+    labs = AllLabs(user)
 
     if message.text in [x[2] for x in labs.labs]:
         return EditingResult(success=False, error='short name already exist'), lab
@@ -1027,8 +1099,8 @@ def edit_short_name(user: User, message: Message = None) -> tuple[EditingResult,
 
 
 def edit_callback_name(user: User, message: Message = None) -> tuple[EditingResult, Lab]:
-    lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
-    labs = AllLabs()
+    lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+    labs = AllLabs(user)
 
     if message.text in [x[3] for x in labs.labs]:
         if message.text in [x[2] for x in labs.labs]:
@@ -1047,7 +1119,7 @@ def edit_callback_name(user: User, message: Message = None) -> tuple[EditingResu
 
 
 def edit_main_pictures(user: User, message: Message = None) -> tuple[EditingResult, Lab]:
-    lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+    lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
     if message.photo is None:
         if message.document is not None:
@@ -1065,13 +1137,14 @@ def edit_main_pictures(user: User, message: Message = None) -> tuple[EditingResu
 
 
 def edit_about_group(user: User, message: Message = None) -> tuple[EditingResult, Lab]:
-    lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
-    lab.about = message.text
+    lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
     if len(message.text) > 950:
         return EditingResult(success=False, error='too long'), lab
 
-    elif lab.update():
+    lab.about = message.md_text
+
+    if lab.update():
         return EditingResult(success=True), lab
 
     else:
@@ -1079,8 +1152,8 @@ def edit_about_group(user: User, message: Message = None) -> tuple[EditingResult
 
 
 def edit_areas(user: User, message: Message = None) -> tuple[EditingResult, Lab]:
-    lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
-    num = int(re.search(r'area_num=\d{1,2}', user.action).group().replace('area_num=', ''))
+    lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+    num = int(re.search(r'area_num=\d{1,2}', user.action).group().replace('area_num=', '')) - 1
 
     if 'Название:' not in message.text:
         return EditingResult(success=False, error='no title'), lab
@@ -1088,19 +1161,36 @@ def edit_areas(user: User, message: Message = None) -> tuple[EditingResult, Lab]
     elif 'Описание:' not in message.text:
         return EditingResult(success=False, error='no about'), lab
 
-    elif 'Контакты:' not in message.text:
-        return EditingResult(success=False, error='no contacts'), lab
+    elif 'Учёный:' not in message.text:
+        return EditingResult(success=False, error='no scientist'), lab
 
-    elif '\n\n\n' not in message.text or len(message.text.split('\n\n\n')) < 3:
+    elif 'Кабинет:' not in message.text:
+        return EditingResult(success=False, error='no cabinet'), lab
+
+    elif 'Электронная почта:' not in message.text:
+        return EditingResult(success=False, error='no email'), lab
+
+    elif '\n\n\n\n' in message.text:
+        return EditingResult(success=False, error='too long indents'), lab
+
+    elif '\n\n\n' not in message.text or len(message.text.split('\n\n\n')) < 4:
         return EditingResult(success=False, error='no indents'), lab
 
     else:
-        _ = message.text.split('\n\n\n')
-        data_to_paste = {'title': _[0].replace('Название:', ''),
-                         'about': _[1].replace('Описание:', ''),
-                         'contacts': _[2].replace('Контакты:', '')}
-        if len(_) == 4:
-            data_to_paste['more'] = _[3].replace('Подробнее:', '')
+        fields = message.md_text.split('\n\n\n')
+
+        morph = MorphAnalyzer()
+        sex = 'male' if morph.parse(fields[2].replace('Учёный: ', ''))[0].tag.gender == 'masc' else 'female'
+        print(sex, fields[2], morph.parse(fields[2].replace('Учёный: ', '')))
+
+        data_to_paste = {'title': fields[0].replace('Название: ', ''),
+                         'about': fields[1].replace('Описание: ', ''),
+                         'scientist': fields[2].replace('Учёный: ', ''),
+                         'sex': sex,
+                         'room': fields[3].replace('Кабинет: ', ''),
+                         'email': fields[4].replace('Электронная почта: ', '')}
+        if 'Подробнее:' in message.text:
+            data_to_paste['more'] = fields[6].replace('Подробнее:', '')
 
         if type(lab.areas) is list:
             if num:
@@ -1121,9 +1211,9 @@ def edit_areas(user: User, message: Message = None) -> tuple[EditingResult, Lab]
 
 
 def edit_area_pictures(user: User, message: Message = None) -> tuple[EditingResult, Lab]:
-    lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+    lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
     # Здесь будет номер научного направления
-    num = int(re.search(r'area_num=\d{1,2}', user.action).group().replace('area_num=', ''))
+    num = int(re.search(r'area_num=\d{1,2}', user.action).group().replace('area_num=', '')) - 1
 
     if message.photo is None:
         if message.document is not None:
@@ -1134,8 +1224,12 @@ def edit_area_pictures(user: User, message: Message = None) -> tuple[EditingResu
 
     else:
         if num:
-            lab.areas[-1]['pictures'] = {'picture': message.photo[-1].file_id,
-                                         'desc': message.caption}
+            if 'pictures' not in lab.areas[num].keys():
+                lab.areas[num]['pictures'] = [{'picture': message.photo[-1].file_id,
+                                              'desc': message.caption}]
+            else:
+                lab.areas[num]['pictures'].append({'picture': message.photo[-1].file_id,
+                                                   'desc': message.caption})
         else:
             if 'pictures' in lab.areas[-1].keys():
                 lab.areas[-1]['pictures'].append({'picture': message.photo[-1].file_id,
@@ -1152,13 +1246,13 @@ def edit_area_pictures(user: User, message: Message = None) -> tuple[EditingResu
 
 
 def edit_contacts(user: User, message: Message = None, new_contacts: bool = False) -> tuple[EditingResult, Lab]:
-    lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+    lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
     if new_contacts:
         lab.contacts = None
 
     if '\n\n' in message.text:
-        for human in message.text.split('\n\n'):
+        for human in message.md_text.split('\n\n'):
             if len(human.split('\n')) != 3:
                 return EditingResult(success=False, error='not enough information'), lab
 
@@ -1181,7 +1275,7 @@ def edit_contacts(user: User, message: Message = None, new_contacts: bool = Fals
             return EditingResult(success=False, error='not enough information'), lab
 
         else:
-            _ = message.text.split('\n')
+            _ = message.md_text.split('\n')
             data_to_paste = {'person': _[0],
                              'room': _[1],
                              'email': _[2]}
@@ -1197,10 +1291,10 @@ def edit_contacts(user: User, message: Message = None, new_contacts: bool = Fals
 
 
 def edit_courseworks(user: User, message: Message = None) -> tuple[EditingResult, Lab]:
-    lab = Lab(id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
+    lab = Lab(user=user, id=int(re.search(r'id=\d{1,2}', user.action).group().replace('id=', '')))
 
     if '\n\n' in message.text:
-        for coursework in message.text.split('\n\n'):
+        for coursework in message.md_text.split('\n\n'):
             _ = coursework.split('\n')
             if len(_) < 3:
                 return EditingResult(success=False, error='not enough information'), lab
@@ -1213,7 +1307,7 @@ def edit_courseworks(user: User, message: Message = None) -> tuple[EditingResult
                 lab.courseworks = [_] if lab.courseworks is None else lab.courseworks.apend(_)
 
     else:
-        _ = message.text.split('\n')
+        _ = message.md_text.split('\n')
         if len(_) < 3:
             return EditingResult(success=False, error='not enough information'), lab
 
@@ -1268,8 +1362,8 @@ async def delete_science_group(user: User, bot: Bot, message: Message = None, ca
                                        reply_markup=back_keyboard(user, False).as_markup())
 
             else:
-                lab = Lab(id=group_id)
-                if lab.delete_lab():
+                lab = Lab(user=user, id=group_id)
+                if lab.delete_Lab(user=user, ):
                     await bot.send_message(chat_id=user.id,
                                            text=f'Группа {lab.short_name} успешно удалена',
                                            reply_markup=back_keyboard(user, False).as_markup())
@@ -1281,6 +1375,52 @@ async def delete_science_group(user: User, bot: Bot, message: Message = None, ca
             await bot.send_message(chat_id=user.id,
                                    text=f'Не могу распознать число в твоём сообщении :(',
                                    reply_markup=back_keyboard(user, False).as_markup())
+
+
+async def rules_of_text_formatting(user: User, callback: CallbackQuery, bot: Bot):
+    await bot.delete_message(chat_id=callback.from_user.id,
+                             message_id=callback.message.message_id)
+    await bot.send_message(chat_id=callback.from_user.id,
+                           text='Telegram поддерживает форматирование текста\. При правильном использовании это '
+                                'помогает проще воспринимать текст\. Но может и *вызвать* ~кровь~ __из__ `глаз`\. '
+                                'Используй с умом\.\n\n'
+                                ''
+                                'Ты можешь использовать *жирный* текст, _курсив_, __подчёркнутый__, ~зачёркнутый~, '
+                                '`моноширинный`, ||спойлер|| и [ссылки](https://ofvp.phys.msu.ru/)\. '
+                                'Обо всём по порядку\. \n\n'
+                                ''
+                                'Предпочтительнее использовать встроенные функции '
+                                'форматирования\.\n\n'
+                                ''
+                                '*Windows/MacOS/Linux*\n\n'
+                                ''
+                                'В _браузере_ достаточно выделить текст\. После этого появится контекстное меню с '
+                                'выбором форматирования\.\n'
+                                'В _приложении_ нужно выделить фрагмент текста, нажать правую кнопку мыши \(ПКМ\), '
+                                'навести курсор на выпадающее меню "Форматировать" и выбрать нужный стиль\.\n\n'
+                                ''
+                                '*Android/iOS*\n\n'
+                                ''
+                                'Необходимо выбрать часть текста, во всплывающем меню выбрать "Форматирование" или 3 '
+                                'точки и выбрать нужный стиль\. Если во всплывающем окне нет нужной команды, нажмите '
+                                'на 3 точки или на кнопку "Форматирование" наверху экрана, после чего выберите нужный '
+                                'стиль\.\n\n'
+                                ''
+                                '*Что делать, если не могу найти форматирование?*\n\n'
+                                ''
+                                'Лучше попытаться поискать ещё или у кого\-нибудь спросить\. В крайнем случае можно '
+                                'прибегнуть к "ручному" форматированию \(но это может вызвать ошибки\)\. Ниже приведён '
+                                'пример форматирования и шаблон, по которому можно сделать форматирование:\n\n'
+                                ''
+                                '*жирный*   \*жирный\*\n'
+                                '_курсив_    \_курсив\_\n'
+                                '__подчёркнутый__    __подчёркнутый__\n'
+                                '~зачёркнутый~   \~зачёркнутый\~\n'
+                                '`моноширинный`   \`моноширинный\`\n'
+                                '||спойлер||   \|\|спойлер\|\|\n'
+                                '[ссылка](https://ofvp.phys.msu.ru/)    \[ссылка\]\(https://ofvp\.phys\.msu\.ru/\)',
+                           reply_markup=back_keyboard(user).as_markup(),
+                           parse_mode='MarkdownV2')
 
 
 async def database_error_message(user: User, bot: Bot):

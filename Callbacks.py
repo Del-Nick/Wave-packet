@@ -12,6 +12,7 @@ from About_departments import scientific_groups
 
 
 async def start_callback(user: User, callback: CallbackQuery):
+    user.action = 'start'
     await callback.message.edit_media(InputMediaPhoto(media=main_menu,
                                                       caption=f'Вжух! Мы в главном меню'),
                                       reply_markup=start_keyboard(user).as_markup())
@@ -92,112 +93,128 @@ async def inside_scientifit_group(user: User, bot: Bot, callback: CallbackQuery)
     else:
         _, callback_name, action, page = callback.data.split('->')
 
-    lab = Lab(callback_name=callback_name)
+    lab = Lab(user=user, callback_name=callback_name)
 
-    match action:
-        case 'start':
-            print(user.action)
-            # При просмотре научных направлений отправляется 2 сообщения с медиагруппой и текстом. Редактировать нельзя
-            if 'area' in user.action:
-                await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
-                await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id - 1)
-                await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id - 2)
-                await bot.send_photo(chat_id=callback.from_user.id,
-                                     photo=lab.main_picture,
-                                     caption=f'*{lab.full_name}*\n\n{lab.about}',
-                                     reply_markup=areas_courseworks_contacts_keyboard(user, lab).as_markup(),
-                                     parse_mode='Markdown')
-            else:
-                await callback.message.edit_media(
-                    InputMediaPhoto(media=lab.main_picture,
-                                    caption=f'*{lab.full_name}*\n\n{lab.about}',
-                                    parse_mode='Markdown'),
-                    reply_markup=areas_courseworks_contacts_keyboard(user, lab).as_markup())
-
-            user.action = f'science_group->{callback_name}->start'
-
-        case 'courseworks':
-            total_pages = len(lab.courseworks)
-
-            if page[-1] == '+':
-                page = int(page.replace('page_', '').replace('+', ''))
-                page = 0 if page + 1 == total_pages else page + 1
-
-            elif page[-1] == '-':
-                page = int(page.replace('page_', '').replace('-', ''))
-                page = total_pages - 1 if page - 1 < 0 else page - 1
-
-            user.action = f'science_group->{lab.callback_name}->courseworks_{page}'
-
+    if 'start' in action:
+        print(user.action)
+        # При просмотре научных направлений отправляется 2 сообщения с медиагруппой и текстом. Редактировать нельзя
+        if 'area' in user.action:
+            await bot.send_photo(chat_id=callback.from_user.id,
+                                 photo=lab.main_picture,
+                                 caption=f'*{lab.full_name}*\n\n{lab.about}',
+                                 reply_markup=areas_courseworks_contacts_keyboard(user, lab).as_markup(),
+                                 parse_mode='MarkdownV2')
+            await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
+            await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id - 1)
+            await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id - 2)
+        else:
             await callback.message.edit_media(
                 InputMediaPhoto(media=lab.main_picture,
-                                caption=f"{lab.courseworks[page]}\n\n\n"
-                                        f"📜 Страница {page + 1} из {total_pages}"),
-                reply_markup=slider_keyboard(user,
-                                             page=page,
-                                             total_pages=total_pages,
-                                             lab=lab,
-                                             type_keyboard='courseworks').as_markup())
+                                caption=f'*{lab.full_name}*\n\n{lab.about}',
+                                parse_mode='MarkdownV2'),
+                reply_markup=areas_courseworks_contacts_keyboard(user, lab).as_markup())
 
-        case 'contacts':
-            user.action = f'science_group->{lab.callback_name}->contacts'
+        user.action = f'science_group->{callback_name}->start'
 
-            contacts = ''
-            for contact in lab.contacts:
-                emoji = '👨‍🎓' if contact['sex'] == 'male' else '👩‍🎓'
-                contacts += (f'{emoji} {contact["person"]}\n'
-                             f'📍 {contact["room"]}\n'
-                             f'📧 {contact["email"]}\n\n')
+    elif 'courseworks' in action:
+        total_pages = len(lab.courseworks)
 
-            await callback.message.edit_media(
-                InputMediaPhoto(media=lab.main_picture,
-                                caption=contacts),
-                reply_markup=back_keyboard(user).as_markup(),
-                parse_mode=ParseMode.HTML)
+        if page[-1] == '+':
+            page = int(page.replace('page_', '').replace('+', ''))
+            page = 0 if page + 1 == total_pages else page + 1
 
-        case 'areas':
-            total_pages = len(lab.areas)
+        elif page[-1] == '-':
+            page = int(page.replace('page_', '').replace('-', ''))
+            page = total_pages - 1 if page - 1 < 0 else page - 1
 
-            if page[-1] == '+':
-                page = int(page.replace('page_', '').replace('+', ''))
-                page = 0 if page + 1 == total_pages else page + 1
+        user.action = f'science_group->{lab.callback_name}->courseworks_{page}'
 
-            elif page[-1] == '-':
-                page = int(page.replace('page_', '').replace('-', ''))
-                page = total_pages - 1 if page - 1 < 0 else page - 1
+        await callback.message.edit_media(
+            InputMediaPhoto(media=lab.main_picture,
+                            caption=f"{lab.courseworks[page]}\n\n\n"
+                                    f"📜 Страница {page + 1} из {total_pages}",
+                            parse_mode='MarkdownV2'),
+            reply_markup=slider_keyboard(user,
+                                         page=page,
+                                         total_pages=total_pages,
+                                         lab=lab,
+                                         type_keyboard='courseworks').as_markup())
 
-            else:
-                page = int(page.replace('page_', ''))
+    elif 'contacts' in action:
+        user.action = f'science_group->{lab.callback_name}->contacts'
 
-            user.action = f'science_group->photonics_and_spectroscopy->areas->page_{page}'
+        contacts = ''
+        for contact in lab.contacts:
+            emoji = '👨‍🎓' if contact['sex'] == 'male' else '👩‍🎓'
+            contacts += (f'{emoji} {contact["person"]}\n'
+                         f'📍 {contact["room"]}\n'
+                         f'📨 {contact["email"]}\n\n')
 
-            if len(lab.areas[page]['pictures']) > 0:
-                if len(lab.areas[page]['pictures']) > 1:
-                    pictures = []
-                    for pic in lab.areas[page]['pictures']:
-                        pictures.append(InputMediaPhoto(media=pic['picture'],
-                                                        caption=pic['desc']))
-                else:
-                    pictures = InputMediaPhoto(media=lab.areas[page]['pictures'][0]['picture'],
-                                               caption=f"_{lab.areas[page]['pictures'][0]['desc']}_",
-                                               parse_mode='Markdown')
+        await callback.message.edit_media(
+            InputMediaPhoto(media=lab.main_picture,
+                            caption=contacts,
+                            parse_mode='MarkdownV2'),
+            reply_markup=back_keyboard(user).as_markup())
 
-                await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
-                await bot.send_media_group(chat_id=user.id,
-                                           media=pictures)
-                await bot.send_message(chat_id=user.id,
-                                       text=f'_Описание изображений доступно при нажатии на картинку_\n\n'
-                                            f'{lab.areas[page]["about"]}\n\n'
-                                            f'📜 Страница {page + 1} из {len(lab.areas)}',
-                                       parse_mode='Markdown',
-                                       reply_markup=slider_keyboard(user, total_pages=len(lab.areas), page=page,
-                                                                    lab=lab).as_markup())
+    elif 'areas' in action:
+        total_pages = len(lab.areas)
+        page_str = page
+        if page[-1] == '+':
+            page = int(page.replace('page_', '').replace('+', ''))
+            page = 0 if page + 1 == total_pages else page + 1
 
-            else:
-                await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
-                await bot.send_message(chat_id=user.id,
-                                       text=f'{lab.areas[page]["about"]}\n\n'
-                                            f'📜 Страница {page + 1} из {len(lab.areas)}',
-                                       parse_mode='Markdown',
-                                       reply_markup=slider_keyboard(user, total_pages=len(lab.areas), page=page,
-                                                                    lab=lab).as_markup())
+        elif page[-1] == '-':
+            page = int(page.replace('page_', '').replace('-', ''))
+            page = total_pages - 1 if page - 1 < 0 else page - 1
+
+        else:
+            page = int(page.replace('page_', ''))
+
+        user.action = f'science_group->{lab.callback_name}->areas->page_{page}'
+
+        pprint(lab.areas[page])
+
+        if len(lab.areas[page]['pictures']) > 0:
+            pictures = []
+            for pic in lab.areas[page]['pictures']:
+                pictures.append(InputMediaPhoto(media=pic['picture'],
+                                                caption=f"_{pic['desc']}_",
+                                                parse_mode='Markdown'))
+
+            # Если 2 картинки или больше, телеграм не показывает описание к ним, поэтому намекаем полльзователю
+            hidden_text = '_Описание изображений доступно при нажатии на картинку_\n\n' \
+                if len(lab.areas[page]['pictures']) > 1 else ''
+
+            await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
+            await bot.send_media_group(chat_id=user.id,
+                                       media=pictures)
+            emoji = '👨‍🎓' if lab.areas[page]['sex'] == 'male' else '👩‍🎓'
+            await bot.send_message(chat_id=user.id,
+                                   text=f'{hidden_text}'
+                                        f'*{lab.areas[page]["title"]}*\n\n'
+                                        f'{lab.areas[page]["about"]}\n\n'
+                                        f''
+                                        f'{emoji} {lab.areas[page]["scientist"]}\n'
+                                        f'📍 {lab.areas[page]["room"]}\n'
+                                        f'📨 {lab.areas[page]["email"]}\n\n'
+                                        f'📜 Страница {page + 1} из {len(lab.areas)}',
+                                   parse_mode='MarkdownV2',
+                                   reply_markup=slider_keyboard(user, total_pages=len(lab.areas), page=page,
+                                                                lab=lab).as_markup())
+
+        else:
+            await bot.delete_message(chat_id=callback.from_user.id, message_id=callback.message.message_id)
+            await bot.send_message(chat_id=user.id,
+                                   text=f'{lab.areas[page]["about"]}\n\n'
+                                        f'📜 Страница {page + 1} из {len(lab.areas)}',
+                                   parse_mode='MarkdownV2',
+                                   reply_markup=slider_keyboard(user, total_pages=len(lab.areas), page=page,
+                                                                lab=lab).as_markup())
+
+        if page_str[-1] == '+' or page_str[-1] == '-':
+            await bot.delete_message(chat_id=callback.from_user.id,
+                                     message_id=callback.message.message_id - 1)
+            await bot.delete_message(chat_id=callback.from_user.id,
+                                     message_id=callback.message.message_id - 2)
+            await bot.delete_message(chat_id=callback.from_user.id,
+                                     message_id=callback.message.message_id - 3)
